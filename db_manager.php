@@ -141,18 +141,18 @@
 
             $sql = 'INSERT INTO `gestionale`.wp_versions (targa, versione, codice)
             VALUES ("' . $data['targa'] . '", 
-                "' . $data['versione'][$i]['versione'] . '"),
+                "' . $data['versione'][$i]['versione'] . '",
                 "' . $data['versione'][$i]['codice'] . '")';
 
 
             // Eseguo la query e ne controllo l'esito
             if ($conn->query($sql) === TRUE) 
             {
-                echo "Inserted into DB = > " . $data['versioni'];
+                //echo "Inserted into DB = > " . $data['versioni'];
             } 
             else 
             {
-                echo "store_to_db - Error: " . $sql . "<br>" . $conn->error;
+                //echo "store_to_db - Error: " . $sql . "<br>" . $conn->error;
             }
         }
         // Chiudo la connessione
