@@ -148,11 +148,11 @@
             // Eseguo la query e ne controllo l'esito
             if ($conn->query($sql) === TRUE) 
             {
-                ////debug_to_console("Inserted into DB = > " . $data['versioni']);
+                echo "Inserted into DB = > " . $data['versioni'];
             } 
             else 
             {
-                //debug_to_console("store_to_db - Error: " . $sql . "<br>" . $conn->error);
+                echo "store_to_db - Error: " . $sql . "<br>" . $conn->error;
             }
         }
         // Chiudo la connessione
