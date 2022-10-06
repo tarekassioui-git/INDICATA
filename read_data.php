@@ -1,5 +1,17 @@
 <?php 
 
+
+    /**
+     * Lettura del risultato dell'api 
+     * 
+     * Legge l'oggetto restituito dalla chiamata all'api riguardante i dati tecnici del veicolo
+     * 
+     * @author Tarek Assioui
+     * 
+     * @param content oggetto restituito come risposta dall'api di INDICATA
+     * 
+     * @return void
+     */
     function parse_registration($content)
     {
 
