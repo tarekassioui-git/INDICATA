@@ -13,7 +13,7 @@
         for ($i=0 ; $i < sizeof($parsed_registration['versione']); $i++)
         {
             $temp = explode(' - ', $parsed_registration['versione'][$i]);
-            var_dump($temp);
+            
             $parsed_registration['versione'][$i] = $temp[1];
             $parsed_registration['versione'][$i]['codice'] = $temp[0];
         }
