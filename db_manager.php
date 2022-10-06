@@ -139,9 +139,10 @@
         for($i = 0; $i < sizeof($data['versione']); $i++)
         {
 
-            $sql = 'INSERT INTO `gestionale`.wp_versions (targa, versione)
+            $sql = 'INSERT INTO `gestionale`.wp_versions (targa, versione, codice)
             VALUES ("' . $data['targa'] . '", 
-                "' . json_encode(array('versione' => $data['versione'][$i]['versione'],'codice' => $data['versione'][$i]['codice'] )) . '")';
+                "' . $data['versione'][$i]['versione'] . '",
+                "' . $data['versione'][$i]['codice'] . '")';
 
 
             // Eseguo la query e ne controllo l'esito
