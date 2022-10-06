@@ -67,7 +67,7 @@
         while($row = mysqli_fetch_array($responseVersioni)){
 
             array_push($arrayVersioni, $row[0]);
-            var_dump($row);
+            var_dump($row[0]);
         }
 
         $result[1]['versione'] = $arrayVersioni;
