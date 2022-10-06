@@ -141,7 +141,7 @@
 
             $sql = 'INSERT INTO `gestionale`.wp_versions (targa, versione)
             VALUES ("' . $data['targa'] . '", 
-                "' . array('versione' => $data['versione'][$i]['versione'], $data['versione'][$i]['codice'] ) . '")';
+                "' . array('versione' => $data['versione'][$i]['versione'],'codice' => $data['versione'][$i]['codice'] ) . '")';
 
 
             // Eseguo la query e ne controllo l'esito
