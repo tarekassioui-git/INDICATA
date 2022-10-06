@@ -69,7 +69,7 @@
             $parsed_registration['trazione']= $content->providerData->providerGroups[2]->entries[5]->value;
 
 
-        str_replace('Trazione ', '', $parsed_registration['trazione']);
+        $parsed_registration['trazione'] = str_replace('Trazione ', '', $parsed_registration['trazione']);
 
         /* Popolamento form */ 
         fill_registrationData($parsed_registration);
