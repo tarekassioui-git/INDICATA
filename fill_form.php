@@ -51,10 +51,6 @@
 	
 	//the select feild id you want the versions to load
 	$field_ID = '12';
-	
-
-	/* DA CAMBIARE USATO SOLO PER TEST*/
-	/* $data['versioni'] = array("versione 1" , "versione 2" , "versione 3"); */
 
 	//Go through each form fields
 	foreach ( $form['fields'] as $field ) {
