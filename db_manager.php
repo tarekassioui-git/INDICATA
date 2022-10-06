@@ -23,7 +23,7 @@
         // Query per ottenere targa
         $sql = '
         SELECT * FROM gestionale.wp_cars WHERE targa="' . $plate . '"';
-        $sqlVersioni =  'SELECT versione FROM gestionale.wp_versions WHERE targa="' . $plate . '"';
+        $sqlVersioni =  'SELECT versione, codice FROM gestionale.wp_versions WHERE targa="' . $plate . '"';
 
         // Connessione al database
         $conn =  mysqli_connect(NAME_DB, USERNAME_DB, PASSWORD_DB);
