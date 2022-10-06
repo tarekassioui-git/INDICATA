@@ -60,6 +60,8 @@
 
         /* Lettura potenza */ 
         $parsed_registration['potenza'] = $content->engine->description[4]->value . 'KW - ' . $content->engine->description[2]->value . 'Cv';
+        if($parsed_registration['potenza'] ==  'KW - Cv')
+            $parsed_registration['potenza'] =$content->providerData->providerGroups[2]->entries[3]->value . 'KW - ' . $content->providerData->providerGroups[2]->entries[2]->value . 'Cv';
         
         /* Lettura trazione */
         $parsed_registration['trazione'] = $content->wheelDrive->description[0]->value;
