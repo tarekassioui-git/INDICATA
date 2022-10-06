@@ -19,7 +19,7 @@
 
         $parsed_registration['cambio'] = $content->transmission->description[0]->value;
         if(!isset($parsed_registration['cambio']))
-            $parsed_registration['cambio']= $content->providerData->providerGroups[2]->entries[12]->value;
+            $parsed_registration['cambio']= $content->providerData->providerGroups[2]->entries[6]->value;
 
         $parsed_registration['immatricolazione'] = $content->regDate->name;
         
@@ -28,7 +28,10 @@
             $parsed_registration['carburante']= $content->providerData->providerGroups[2]->entries[9]->value;
 
         $parsed_registration['potenza'] = $content->engine->description[4]->value . 'KW - ' . $content->engine->description[2]->value . 'Cv';
+        
         $parsed_registration['trazione'] = $content->wheelDrive->description[0]->value;
+        if(!isset($parsed_registration['trazione']))
+            $parsed_registration['trazione']= $content->providerData->providerGroups[2]->entries[5]->value;
 
         
         var_dump($parsed_registration);
