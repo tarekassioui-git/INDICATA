@@ -9,6 +9,12 @@
         $parsed_registration['marca'] = $content->make->name;
         $parsed_registration['modello'] = $content->model->name;
         $parsed_registration['versione'] = explode(',', $content->providerData->providerGroups[0]->entries[1]->value);
+        
+        foreach ($parsed_registration['versione'] as $value)
+        {
+            $parsed_registration['versione']['codice'] = explode(' - ', $content->providerData->providerGroups[0]->entries[1]->value);
+        }
+
         $parsed_registration['cambio'] = $content->transmission->description[0]->value;
         $parsed_registration['immatricolazione'] = $content->regDate->name;
         $parsed_registration['carburante'] = $content->engine->description[0]->value; 
