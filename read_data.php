@@ -13,6 +13,7 @@
         foreach ($parsed_registration['versione'] as $value)
         {
             $temp = explode(' - ', $value);
+            echo $temp;
             $parsed_registration['versione']['codice'] = $temp[0];
         }
 
