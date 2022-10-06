@@ -18,6 +18,9 @@
         }
 
         $parsed_registration['cambio'] = $content->transmission->description[0]->value;
+        if(!isset($parsed_registration['cambio']))
+            $parsed_registration['cambio']= $content->providerData->providerGroups[2]->entries[12]->value;
+
         $parsed_registration['immatricolazione'] = $content->regDate->name;
         
         $parsed_registration['carburante'] = $content->engine->description[0]->value; 
