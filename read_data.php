@@ -10,9 +10,9 @@
         $parsed_registration['modello'] = $content->model->name;
         $parsed_registration['versione'] = explode(',', $content->providerData->providerGroups[0]->entries[1]->value);
         
-        foreach ($parsed_registration['versione'] as $value)
+        for ($i=0 ; $i < sizeof($parsed_registration['versione']); $i++)
         {
-            $temp = explode(' - ', $value);
+            $temp = explode(' - ', $parsed_registration['versione'][$i]);
             echo $temp;
             $parsed_registration['versione']['codice'] = $temp[0];
         }
