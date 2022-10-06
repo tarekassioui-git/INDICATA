@@ -14,8 +14,8 @@
         {
             $temp = explode(' - ', $parsed_registration['versione'][$i]);
             var_dump($temp);
-            $parsed_registration['versione'] = $temp[1];
-            $parsed_registration['versione']['codice'] = $temp[0];
+            $parsed_registration['versione'][$i] = $temp[1];
+            $parsed_registration['versione'][$i]a['codice'] = $temp[0];
         }
 
         $parsed_registration['cambio'] = $content->transmission->description[0]->value;
