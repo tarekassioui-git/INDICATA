@@ -12,7 +12,8 @@
         
         foreach ($parsed_registration['versione'] as $value)
         {
-            $parsed_registration['versione']['codice'] = explode(' - ', $content->providerData->providerGroups[0]->entries[1]->value);
+            $temp = explode(' - ', $value);
+            $parsed_registration['versione']['codice'] = $temp[0];
         }
 
         $parsed_registration['cambio'] = $content->transmission->description[0]->value;
@@ -22,6 +23,8 @@
         $parsed_registration['trazione'] = $content->wheelDrive->description[0]->value;
 
         
+        var_dump($parsed_registration);
+
         /* Popolamento form */ 
         fill_registrationData($parsed_registration);
         
