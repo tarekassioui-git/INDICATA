@@ -2,6 +2,10 @@
 
     function parse_registration($content)
     {
+
+        $pattern = '/\s*/m';
+        $replace = '';
+
         $parsed_registration = Array();
 
         $parsed_registration['targa'] = $content->identifier;
@@ -13,7 +17,7 @@
         for ($i=0 ; $i < sizeof($parsed_registration['versione']); $i++)
         {
             $temp = explode('-', $parsed_registration['versione'][$i]);
-
+            $temp[0] = preg_replace( $pattern, $replace,$temp[0]);
             $parsed_registration['versione'][$i] = array('versione' => $temp[1], 'codice' => $temp[0]);
         }
 
