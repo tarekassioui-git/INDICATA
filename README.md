@@ -1,7 +1,6 @@
 ##### Table of Contents  
 [File progetto](#Files)  
-[Workflow](#Workflow)  
-...snip...    
+[Workflow](#Workflow)      
 <a name="headers"/>
 
 
