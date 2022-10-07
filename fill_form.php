@@ -57,7 +57,7 @@
             //check if field type is a select dropdown and id is 2
             if ( $field->type == 'select' && $field->id == $field_ID) {
                 //add name and value to the option
-                foreach($data['versione'] as $i=>$single_name){
+                foreach($data['versione'] as $single_name){
                     $choices[] = array('text' => $single_name['versione'], 'value' => $single_name['codice'] );
                 }
                 //Add a place holder
