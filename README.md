@@ -1,15 +1,16 @@
 ##### Table of Contents  
-[Headers](#headers)  
-[Emphasis](#emphasis)  
+[File progetto](#File del progetto)  
+[Workflow](#Workflow)  
 ...snip...    
 <a name="headers"/>
-## Headers
+
 
 
 # INDICATA
 # Progetto volto all'integrazione dei servizi offerti da INDICATA su GRAVITY FORM
 #
-# File del progetto
+
+## File del progetto
 #   1. configuration.php Gestisce il workflow del progetto, ovvero l'ordine in cui vengono chiamate le funzioni. Contiene tutte le variabili globali (define)
 #   2. call_api.php Gestisce tutte le comunicazioni con le API
 #   3. db_manager.php Gestisce tutte le interazioni col database
@@ -17,7 +18,8 @@
 #   5. read_data.php Legge le risposte delle API   
 #
 #
-# Workflow
+
+## Workflow
 #   1. indicata_workflow()
 #   2. check_db() controlla se nel database sia già presente il veicolo
 #   3. call_registration_number_api() chiama l'API che fornisce i dati tecnici del veicolo a partire dalla targa
