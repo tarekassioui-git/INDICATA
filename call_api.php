@@ -44,4 +44,20 @@
         return;
     }
 
+
+    function call_valuation_api($plate)
+    {
+        /* Prendo i dati dal database */ 
+        $data = check_db($plate);
+
+        /* L'operatore ternario non va, non si sa perché */ 
+        if($data[0])
+            $data = $data[1];
+        else
+            echo "C'è stato un errore nell'ottenimento dei dati";
+        
+        /* Costruzione url */
+        
+    }
+
 ?>

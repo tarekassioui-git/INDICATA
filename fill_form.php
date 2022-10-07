@@ -49,25 +49,25 @@
      */
     function populate_posts( $form, $data ) {
 	
-	//the select feild id you want the versions to load
-	$field_ID = '12';
+        //the select feild id you want the versions to load
+        $field_ID = '12';
 
-	//Go through each form fields
-	foreach ( $form['fields'] as $field ) {
-		//check if field type is a select dropdown and id is 2
-		if ( $field->type == 'select' && $field->id == $field_ID) {
-			//add name and value to the option
-			foreach($data['versione'] as $single_name){
-				$choices[] = array('text' => $single_name['versione'], 'value' => $single_name['versione'] );
-			}
-			//Add a place holder
-			$field->placeholder = "Seleziona l'allestimento";
-			//Add the new names to the form choices
-			$field->choices = $choices;
-		}
-	}
-	return $form; //return form
-}
+        //Go through each form fields
+        foreach ( $form['fields'] as $field ) {
+            //check if field type is a select dropdown and id is 2
+            if ( $field->type == 'select' && $field->id == $field_ID) {
+                //add name and value to the option
+                foreach($data['versione'] as $i=>$single_name){
+                    $choices[] = array('text' => $single_name['versione'], $i => $single_name['versione'] );
+                }
+                //Add a place holder
+                $field->placeholder = "Seleziona l'allestimento";
+                //Add the new names to the form choices
+                $field->choices = $choices;
+            }
+        }
+        return $form; //return form
+    }
 
 
 
