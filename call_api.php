@@ -47,7 +47,7 @@
 
     function call_valuation_api($plate)
     {
-        /* Prendo i dati dal database */ 
+        /* Prendo i dati dal database    */ 
         $data = check_db($plate);
 
         /* L'operatore ternario non va, non si sa perché */ 
