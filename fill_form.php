@@ -58,7 +58,7 @@
             if ( $field->type == 'select' && $field->id == $field_ID) {
                 //add name and value to the option
                 foreach($data['versione'] as $i=>$single_name){
-                    $choices[] = array('text' => $single_name['versione'], 'value' => $single_name['versione'] );
+                    $choices[] = array('text' => $single_name['versione'], 'value' => $i );
                 }
                 //Add a place holder
                 $field->placeholder = "Seleziona l'allestimento";
