@@ -85,8 +85,6 @@
         }
         /* Salvataggio su database */
         store_to_db($parsed_registration);
-
-        return $parsed_registration;
     }
 
 ?>
