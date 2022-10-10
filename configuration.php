@@ -54,6 +54,8 @@
 
             
         $current_page = rgpost('gform_source_page_number_53') ? rgpost('gform_source_page_number_53') : 1;
+
+        echo $current_page;
         if ($current_page == 1) {
                  
             $checked = check_db($plate);
