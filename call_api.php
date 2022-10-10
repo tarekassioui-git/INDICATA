@@ -42,6 +42,15 @@
         return;
     }
 
+    add_action( 'gform_post_paging', 'alert_user', 10, 3 );
+    function alert_user( $form, $source_page_number, $current_page_number ) {
+        if ( $current_page_number == 2 ) {
+            $km = $_POST['input_53_13'];
+            
+            echo $km;
+        }
+    }ù
+
 
     function call_valuation_api($plate)
     {
@@ -55,6 +64,8 @@
             echo "C'è stato un errore nell'ottenimento dei dati";
         
         /* Costruzione url */
+        	
+        
         
     }
 
