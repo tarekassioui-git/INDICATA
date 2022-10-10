@@ -63,17 +63,6 @@
 
     }
 
-
-    add_action( 'gform_post_paging_53', 'alert_user', 10, 3 );
-    function alert_user( $form, $source_page_number, $current_page_number ) {
-        if ( $current_page_number == 2 ) {
-            $km = $_POST['input_53_13'];
-            
-            echo $km;
-            echo "provaaaaa";
-        }
-    }
-
     /**
      * When wordpress is loaded the main function get called
      */
