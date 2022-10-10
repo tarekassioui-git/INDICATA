@@ -71,12 +71,8 @@
         }
     }   
 
-    /**
-     * When wordpress is loaded the main function get called
-     */
-    if(isset($_GET['targa']))
-    {
-        add_action( 'wp_loaded','indicata_workflow' );
-    }
+
+    add_action( 'wp_loaded','indicata_workflow' );
+    
 
 ?>
