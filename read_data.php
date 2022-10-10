@@ -71,6 +71,10 @@
 
         $parsed_registration['trazione'] = str_replace('Trazione ', '', $parsed_registration['trazione']);
 
+        $parsed_registration['valuation_url'] = $content->valuation[0]->href;
+        
+        echo $parsed_registration['valuation_url'];
+ 
         /* Popolamento form */ 
         fill_registrationData($parsed_registration);
         

@@ -23,7 +23,6 @@
 
     define('VALUTATION_API', 'https://ws.indicata.com/vivi/v2/IT/variant:trim:seats/valuation/RETAIL_100,SUPPLY_DEMAND,MAX_PURCHASE_PRICE_100,PDF,COMPETITIVE_SET?regdate=2021-02&odometer=km');
 
-
     /**
      * Workflow delle chiamate API e tutto ciò che ne consegue
      * 

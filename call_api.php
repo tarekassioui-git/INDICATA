@@ -16,7 +16,6 @@
     function call_registration_number_api($plate)
     {
         
-
         /* Creazione client Guzzle */
         $client = new GuzzleHttp\Client();
 
@@ -33,8 +32,7 @@
 
         $response       = $client->request('GET', $url, [
             'headers'   => $headers
-        ]);
-            
+        ]);   
 
         $content= json_decode($response->getBody()); 
 
@@ -47,7 +45,7 @@
 
     function call_valuation_api($plate)
     {
-        /* Prendo i dati dal database    */ 
+        /* Prendo i dati dal database */ 
         $data = check_db($plate);
 
         /* L'operatore ternario non va, non si sa perché */ 
