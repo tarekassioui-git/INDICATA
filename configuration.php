@@ -64,8 +64,12 @@
             else
                 fill_registrationData($checked[1]);
         }
-                
-    }
+            
+        if($current_page == 2)
+        {
+            call_valuation_api($plate);
+        }
+    }   
 
     /**
      * When wordpress is loaded the main function get called
