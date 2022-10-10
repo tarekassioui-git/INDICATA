@@ -51,7 +51,7 @@
         if($data[0])
         {
             $data = $data[1];
-            echo "20002";
+            echo "prova";
         }
         else
             echo "C'è stato un errore nell'ottenimento dei dati";
