@@ -49,7 +49,7 @@
             
             echo $km;
         }
-    }ù
+    }
 
 
     function call_valuation_api($plate)
