@@ -55,6 +55,9 @@
             
         $current_page = rgpost('gform_source_page_number_53') ? rgpost('gform_source_page_number_53') : 1;
         
+        echo "pagina corrente : " . $current_page;
+
+
         if ($current_page == 1) {
                  
             $checked = check_db($plate);
@@ -65,7 +68,7 @@
             else
                 fill_registrationData($checked[1]);
         }
-            
+        
         if($current_page == 2)
         {
             echo "andra? boh";
