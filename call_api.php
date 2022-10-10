@@ -49,7 +49,10 @@
 
         /* L'operatore ternario non va, non si sa perché */ 
         if($data[0])
+        {
             $data = $data[1];
+            echo "20002";
+        }
         else
             echo "C'è stato un errore nell'ottenimento dei dati";
         
