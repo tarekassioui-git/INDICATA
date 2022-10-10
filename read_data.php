@@ -78,11 +78,11 @@
         fill_registrationData($parsed_registration);
         
         /* Se almeno uno dei dati non è stato letto correttamente la vettura non viene salvata sul database*/
-/*         foreach($parsed_registration as $value)
+        foreach($parsed_registration as $value)
         {
             if(!isset($value))
                 return;
-        } */
+        }
         /* Salvataggio su database */
         store_to_db($parsed_registration);
     }

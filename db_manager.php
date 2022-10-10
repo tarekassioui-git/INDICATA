@@ -121,7 +121,7 @@
             "' . $data['immatricolazione'] . '",
             "' . $data['trazione'] . '",
             "' . $data['telaio'] . '",
-            "' . $data['valuation_url'] . ')';
+            "' . $data['valuation_url'] . '")';
         
 
 
