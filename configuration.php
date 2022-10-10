@@ -68,6 +68,7 @@
             
         if($current_page == 2)
         {
+            echo "andra? boh";
             call_valuation_api($plate);
         }
     }   
