@@ -42,9 +42,6 @@
         return;
     }
 
-
-
-
     function call_valuation_api($plate)
     {
         /* Prendo i dati dal database */ 

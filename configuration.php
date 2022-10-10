@@ -52,15 +52,19 @@
         if($slug[0] != '/nuova-acquisizione/')
             return;
 
+            
+        $current_page = rgpost('gform_source_page_number_53') ? rgpost('gform_source_page_number_53') : 1;
+        if ($current_page == 1) {
+                 
+            $checked = check_db($plate);
 
-        $checked = check_db($plate);
-
-        if(!$checked[0])
-            /* Chiamata API per ottenere i dati tecnici */
-            call_registration_number_api($plate);
-        else
-            fill_registrationData($checked[1]);
-
+            if(!$checked[0])
+                /* Chiamata API per ottenere i dati tecnici */
+                call_registration_number_api($plate);
+            else
+                fill_registrationData($checked[1]);
+        }
+                
     }
 
     /**
