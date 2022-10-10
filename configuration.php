@@ -38,9 +38,7 @@
     {   
         $plate = $_GET['targa'];
 
-        $current_page = rgpost('gform_source_page_number_53') ? rgpost('gform_source_page_number_53') : 1;
-        
-        echo "pagina corrente : " . $current_page;
+
 
         /* Controllo della presenza di una targa nell'url */
         if(!isset($plate))
@@ -55,7 +53,9 @@
             return;
 
             
-
+        $current_page = rgpost('gform_source_page_number_53') ? rgpost('gform_source_page_number_53') : 1;
+    
+        echo "pagina corrente : " . $current_page;
 
 
         if ($current_page == 1) {
