@@ -72,9 +72,8 @@
         $parsed_registration['trazione'] = str_replace('Trazione ', '', $parsed_registration['trazione']);
 
         $parsed_registration['valuation_url'] = $content->valuation[0]->href;
-        
-        echo $parsed_registration['valuation_url'];
- 
+        $parsed_registration['valuation_url'] = str_replace('{/profiles}', '/RETAIL_100,SUPPLY_DEMAND,MAX_PURCHASE_PRICE_100,PDF,COMPETITIVE_SET', $parsed_registration['valuation_url']);
+       
         /* Popolamento form */ 
         fill_registrationData($parsed_registration);
         
@@ -86,6 +85,8 @@
         }
         /* Salvataggio su database */
         store_to_db($parsed_registration);
+
+        return $parsed_registration;
     }
 
 ?>

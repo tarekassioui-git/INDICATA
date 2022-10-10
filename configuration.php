@@ -60,7 +60,7 @@
             call_registration_number_api($plate);
         else
             fill_registrationData($checked[1]);
-
+        
     }
 
     /**
