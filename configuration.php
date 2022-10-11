@@ -61,29 +61,6 @@
         if($slug[0] != '/nuova-acquisizione/')
             return;
 
-
-        ?>
-        <script type="text/javascript">
-            jQuery(document).on("gform_page_loaded", function(event, form_id, current_page){
-
-            var km = document.getElementById("input_53_13").value;
-
-            if(current_page == 2)
-            {        
-                console.log("PROVO CHIAMATA");
-                
-                <?php 
-                    call_valuation_api();
-                ?>
-
-                console.log("CHIAMATA EFFETTUATA")
-            }
-
-            
-        });
-        </script>
-        <?php
-
                 
         $checked = check_db($plate);
 
@@ -100,3 +77,4 @@
     
 
 ?>
+
