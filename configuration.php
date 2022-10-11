@@ -52,6 +52,8 @@
     {   
         $plate = $_GET['targa'];
 
+        echo $current_page;
+
         if($current_page == 1)
         {
             /* Controllo della presenza di una targa nell'url */
