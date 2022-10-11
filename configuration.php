@@ -90,7 +90,7 @@
 
     } */
 
-    echo json_encode($aResult);
+    //echo json_encode($aResult);
 
 
 
