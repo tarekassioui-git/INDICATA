@@ -52,7 +52,7 @@
         if($slug[0] != '/nuova-acquisizione/')
             return;
 
-            
+
         ?>
         <script type="text/javascript">
             jQuery(document).on("gform_page_loaded", function(event, form_id, current_page){
@@ -63,7 +63,7 @@
             {        
                 console.log("PROVO CHIAMATA");
                 
-                <?php call_valuation_api($km); ?>
+                <?php call_valuation_api(); ?>
 
                 console.log("CHIAMATA EFFETTUATA")
             }

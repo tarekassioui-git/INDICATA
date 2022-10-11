@@ -42,7 +42,7 @@
         return;
     }
 
-    function call_valuation_api($km)
+    function call_valuation_api()
     {
 
         $plate = $_GET['targa'];
