@@ -79,7 +79,7 @@
                    $aResult['error'] = 'Error in arguments!';
                }
                else {
-                   $aResult['result'] = call_valuation_api(floatval($_POST['arguments'][0]), floatval($_POST['arguments'][1]));
+                   $aResult['result'] = call_valuation_api(floatval($_POST['arguments'][0]));
                }
                break;
 
