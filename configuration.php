@@ -23,6 +23,20 @@
 
     define('VALUTATION_API', 'https://ws.indicata.com/vivi/v2/IT/variant:trim:seats/valuation/RETAIL_100,SUPPLY_DEMAND,MAX_PURCHASE_PRICE_100,PDF,COMPETITIVE_SET?regdate=2021-02&odometer=km');
 
+
+    function run_script_on_last_page($form) {
+        if (!is_admin()) {
+            $current_page = rgpost('gform_source_page_number_' . $form['id']) ? rgpost('gform_source_page_number_' . $form['id']) : 1;
+            if($current_page == 1 || $current_page == 2)
+            {
+                indicata_workflow($current_page);
+            }
+        }
+    }
+    add_action('gform_enqueue_scripts_53', 'run_script_on_last_page');
+    
+
+
     /**
      * Workflow delle chiamate API e tutto ciò che ne consegue
      * 
@@ -34,49 +48,37 @@
      * 
      * @return void 
      * */ 
-    function indicata_workflow()
+    function indicata_workflow($current_page)
     {   
         $plate = $_GET['targa'];
 
-
-
-        /* Controllo della presenza di una targa nell'url */
-        if(!isset($plate))
-            return;
-
-        /* Ottenimento dello slug dell'url */
-        $slug = $_SERVER['REQUEST_URI'];
-        $slug = explode('?', $slug);
-        
-        /* Controllo se siamo sulla pagina giusta */
-        if($slug[0] != '/nuova-acquisizione/')
-            return;
-
-            
-/*         $current_page = rgpost('gform_source_page_number_53') ? rgpost('gform_source_page_number_53') : 1;
-    
-        echo "pagina corrente : " . $current_page;
- */
-
-                 
-            $checked = check_db($plate);
-
-            if(!$checked[0])
-                /* Chiamata API per ottenere i dati tecnici */
-                call_registration_number_api($plate);
-            else
-                fill_registrationData($checked[1]);
-        
-        
- /*        if($current_page == 2)
+        if($current_page == 1)
         {
-            echo "andra? boh";
+            /* Controllo della presenza di una targa nell'url */
+            if(!isset($plate))
+                return;
+
+            /* Ottenimento dello slug dell'url */
+            $slug = $_SERVER['REQUEST_URI'];
+            $slug = explode('?', $slug);
+            
+            /* Controllo se siamo sulla pagina giusta */
+            if($slug[0] != '/nuova-acquisizione/')
+                return;
+                    
+                $checked = check_db($plate);
+
+                if(!$checked[0])
+                    /* Chiamata API per ottenere i dati tecnici */
+                    call_registration_number_api($plate);
+                else
+                    fill_registrationData($checked[1]);
+        }
+
+        if($current_page == 2)
             call_valuation_api($plate);
-        } */
+
     }   
-
-
-    add_action( 'wp_loaded','indicata_workflow' );
     
 
 ?>
