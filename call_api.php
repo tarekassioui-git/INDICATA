@@ -42,8 +42,10 @@
         return;
     }
 
-    function call_valuation_api($plate)
+    function call_valuation_api($km)
     {
+
+        $plate = $_GET['targa'];
         /* Prendo i dati dal database */ 
         $data = check_db($plate);
 
