@@ -63,7 +63,7 @@
 
     }   
 
-    header('Content-Type: application/json');
+/*     header('Content-Type: application/json');
 
     $aResult = array();
 
@@ -88,7 +88,7 @@
                break;
         }
 
-    }
+    } */
 
     echo json_encode($aResult);
 
