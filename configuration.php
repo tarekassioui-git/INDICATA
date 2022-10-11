@@ -23,6 +23,33 @@
 
     define('VALUTATION_API', 'https://ws.indicata.com/vivi/v2/IT/variant:trim:seats/valuation/RETAIL_100,SUPPLY_DEMAND,MAX_PURCHASE_PRICE_100,PDF,COMPETITIVE_SET?regdate=2021-02&odometer=km');
 
+
+
+
+    ?>
+    <script type="text/javascript">
+        jQuery(document).on("gform_page_loaded", function(event, form_id, current_page){
+
+        var km = document.getElementById("input_53_13").value;
+
+        if(current_page == 2)
+        {        
+            console.log("PROVO CHIAMATA");
+            
+            <?php 
+                call_valuation_api();
+            ?>
+
+            console.log("CHIAMATA EFFETTUATA")
+        }
+    });
+    </script>
+    <?php
+
+
+
+
+
     /**
      * Workflow delle chiamate API e tutto ciò che ne consegue
      * 
@@ -53,25 +80,7 @@
             return;
 
 
-        ?>
-        <script type="text/javascript">
-            jQuery(document).on("gform_page_loaded", function(event, form_id, current_page){
 
-            var km = document.getElementById("input_53_13").value;
-
-            if(current_page == 2)
-            {        
-                console.log("PROVO CHIAMATA");
-                
-                <?php 
-                    call_valuation_api();
-                ?>
-
-                console.log("CHIAMATA EFFETTUATA")
-            }
-        });
-        </script>
-        <?php
 
                 
         $checked = check_db($plate);
