@@ -63,7 +63,9 @@
             {        
                 console.log("PROVO CHIAMATA");
                 
-                <?php call_valuation_api(); ?>
+                <?php 
+                    call_valuation_api();
+                ?>
 
                 console.log("CHIAMATA EFFETTUATA")
             }

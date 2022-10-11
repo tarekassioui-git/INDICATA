@@ -45,7 +45,7 @@
     function call_valuation_api()
     {        
         $plate = $_GET['targa'];
-        
+        echo "rhuam";
         /* Prendo i dati dal database */ 
         $data = check_db($plate);
 
