@@ -44,11 +44,12 @@
 
 
     
-    add_action( 'gform_post_paging_53', 'call_valuation_api', 10, 3 );
+    add_filter( 'gform_pre_render_53', 'call_valuation_api' );
 
-    function call_valuation_api($form, $source_page_number, $current_page_number)
-    {        
-        if ( $current_page_number != 2) {
+    function call_valuation_api($form)
+    {  
+        $current_page = GFFormDisplay::get_current_page( $form['id'] );      
+        if ( $current_page != 2) {
             echo 'Incorrect page';
             return;
         }
@@ -70,7 +71,7 @@
         /* Costruzione url */
         	
         
-        
+        return $form;
     }
 
 
