@@ -80,6 +80,10 @@
         if ($url == trim($url) && str_contains($url, ' ')) {
             GFCommon::log_debug( __METHOD__ . '(): error: ' .  'has spaces, but not at beginning or end');
         }
+        else
+        {
+            GFCommon::log_debug( __METHOD__ . '(): error: ' .  'has spaces');
+        }
 
         GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
