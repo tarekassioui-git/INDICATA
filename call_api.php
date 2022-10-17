@@ -77,7 +77,7 @@
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
         $url = trim($url);
 
-        if ($url == trim($url) && str_contains($url, ' ')) {
+        if (str_contains($url, ' ')) {
             GFCommon::log_debug( __METHOD__ . '(): error: ' .  'has spaces, but not at beginning or end');
         }
         else
