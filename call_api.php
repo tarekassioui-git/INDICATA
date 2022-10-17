@@ -76,7 +76,7 @@
 
         $url = preg_replace("\{[^)]+\}", "", $data['valuation_url']);
 
-        GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
+        GFCommon::log_debug( __METHOD__ . '(): url: ' . preg_replace("\{[^)]+\}", "", $data['valuation_url']));
         $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
 
         // GET with basic auth and headers
