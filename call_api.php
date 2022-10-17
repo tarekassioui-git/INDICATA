@@ -44,17 +44,17 @@
 
 
     
-
+    add_action( 'gform_post_paging_53', 'call_valuation_api', 10, 3 );
 
     function call_valuation_api($form, $source_page_number, $current_page_number)
     {        
         if ( $current_page_number != 2) {
-            echo 'no bueno';
+            echo 'Incorrect page';
             return;
         }
 
         $plate = $_GET['targa'];
-        echo "rhuam";
+        echo "plate obtained";
         /* Prendo i dati dal database */ 
         $data = check_db($plate);
 
@@ -62,10 +62,10 @@
         if($data[0])
         {
             $data = $data[1];
-            echo "prova";
+            echo "Data obtained";
         }
         else
-            echo "C'è stato un errore nell'ottenimento dei dati";
+            echo "There's been an error obtaining the data";
         
         /* Costruzione url */
         	
