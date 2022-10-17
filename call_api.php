@@ -116,7 +116,7 @@
 
         var_dump($content);
 
-        GFCommon::log_debug( __METHOD__ .$content);
+        GFCommon::log_debug( __METHOD__ . '(): risultato:' . $content);
 
         return $form;
     }
