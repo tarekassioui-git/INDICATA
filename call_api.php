@@ -76,7 +76,7 @@
 
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
 
-        GFCommon::log_debug( __METHOD__ . '(): url: ' . preg_replace("\{[^)]+\}", "", $data['valuation_url']));
+        GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
         $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
 
@@ -96,7 +96,7 @@
 
 
         var_dump($content);
-        
+
         GFCommon::log_debug( __METHOD__ .$content);
 
         return $form;
