@@ -43,7 +43,7 @@
     }
 
 
-    add_action( 'gform_post_paging_53', 'call_valuation_api', 10, 3 );
+    
 
 
     function call_valuation_api($form, $source_page_number, $current_page_number)
