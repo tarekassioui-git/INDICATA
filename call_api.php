@@ -75,6 +75,7 @@
         $client = new GuzzleHttp\Client();
 
         $url = $data['valuation_url'];
+        GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
         $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
 
         // GET with basic auth and headers
