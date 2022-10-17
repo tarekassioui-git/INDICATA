@@ -71,7 +71,25 @@
         
         /* Costruzione url */
         	
-        
+        $url = $data['valuation_url'];
+        $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
+
+        // GET with basic auth and headers
+        $headers = [
+            'Accept'        => 'application/json; charset=UTF-8',
+            'Authorization' => 'Basic ' . $credentials,
+            'Accept-Language'  => 'it-IT',
+            'Accept-Encoding' => 'gzip'
+        ];
+
+        $response       = $client->request('GET', $url, [
+            'headers'   => $headers
+        ]);   
+
+        $content= json_decode($response->getBody()); 
+
+        GFCommon::log_debug( __METHOD__ . var_dump($content));
+
         return $form;
     }
 
