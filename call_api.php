@@ -88,9 +88,23 @@
             'Accept-Encoding' => 'gzip'
         ];
 
-        $response       = $client->request('GET', $url, [
-            'headers'   => $headers
-        ]);   
+        try{
+            $response = $client->request('GET', $url, [
+                'headers'   => $headers
+            ]); 
+        }
+        catch (GuzzleHttp\Exception\ClientException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+        }
+        catch (GuzzleHttp\Exception\ServerException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+        }
+        catch (GuzzleHttp\Exception\BadResponseException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+        }
 
         $content= json_decode($response->getBody()); 
 
