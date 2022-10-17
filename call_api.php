@@ -50,7 +50,7 @@
     {  
         $current_page = GFFormDisplay::get_current_page( $form['id'] );      
         if ( $current_page != 2) {
-            echo 'Incorrect page';
+            echo 'Incorrect page' . $current_page;
             return $form;
         }
 
