@@ -1,5 +1,9 @@
 <?php
     use Guzzle\Http\Exception\ClientErrorResponseException;
+    use GuzzleHttp\Exception\ServerException;
+    use GuzzleHttp\Exception\ClientException;
+    use GuzzleHttp\Exception\BadResponseException;
+    
     /**
      * 
      * Chiamata api tramite targa
