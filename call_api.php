@@ -112,7 +112,6 @@
 
         $content= json_decode($response->getBody()); 
 
-
         var_dump($content);
 
         GFCommon::log_debug( __METHOD__ . '(): risultato:' . $content);
