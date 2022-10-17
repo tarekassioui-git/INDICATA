@@ -94,7 +94,10 @@
 
         $content= json_decode($response->getBody()); 
 
-        GFCommon::log_debug( __METHOD__ . var_dump($content));
+
+        var_dump($content);
+        
+        GFCommon::log_debug( __METHOD__ .$content);
 
         return $form;
     }
