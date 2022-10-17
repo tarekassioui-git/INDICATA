@@ -74,7 +74,8 @@
         /* Creazione client Guzzle */
         $client = new GuzzleHttp\Client();
 
-        $url = trim(preg_replace("/\{[^)]+\}/", "", $data['valuation_url']));
+        $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
+        $url = trim($url);
 
         GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
