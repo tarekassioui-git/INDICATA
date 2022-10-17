@@ -69,8 +69,11 @@
         else
             GFCommon::log_debug( __METHOD__ . '(): data not found: ');
         
-        /* Costruzione url */
-        	
+        /*Inizio chiamata*/ 
+        
+        /* Creazione client Guzzle */
+        $client = new GuzzleHttp\Client();
+
         $url = $data['valuation_url'];
         $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
 
