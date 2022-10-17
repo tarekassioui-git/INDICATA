@@ -75,7 +75,7 @@
         $client = new GuzzleHttp\Client();
 
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
-        $url = preg_replace('/\s+/', '', $url);
+        $url = trim($url);
 
         if ($url == trim($url) && str_contains($url, ' ')) {
             GFCommon::log_debug( __METHOD__ . '(): error: ' .  'has spaces, but not at beginning or end');
