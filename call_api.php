@@ -77,14 +77,6 @@
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
         $url = trim($url);
 
-        if (str_contains($url, ' ')) {
-            GFCommon::log_debug( __METHOD__ . '(): error: ' .  'has spaces, but not at beginning or end');
-        }
-        else
-        {
-            GFCommon::log_debug( __METHOD__ . '(): error: ' .  'has spaces');
-        }
-
         GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
         $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
