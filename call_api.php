@@ -75,7 +75,7 @@
         $client = new GuzzleHttp\Client();
 
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
-        $url = trim($url);
+        //$url = trim($url);
 
         GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
