@@ -56,7 +56,7 @@
         }
 
         $plate = $_GET['targa'];
-        GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
+        GFCommon::log_debug( __METHOD__ . '(): plate obtained ' . $plate );
         /* Prendo i dati dal database */ 
         $data = check_db($plate);
 
@@ -64,10 +64,10 @@
         if($data[0])
         {
             $data = $data[1];
-            GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
+            GFCommon::log_debug( __METHOD__ . '(): data found: ' . $data );
         }
         else
-            GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
+            GFCommon::log_debug( __METHOD__ . '(): data not found: ');
         
         /* Costruzione url */
         	
