@@ -49,7 +49,7 @@
     function call_valuation_api($form, $source_page_number, $current_page_number)
     {        
         if ( $current_page_number != 2 && $form['id'] != '53') {
-            echo 'no bueno'
+            echo 'no bueno';
             return;
         }
 
