@@ -51,12 +51,12 @@
         $current_page = GFFormDisplay::get_current_page('53');    
 
         if ( $current_page != 2) {
-            echo 'Incorrect page --------> ' . $current_page;
+            GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
             return $form;
         }
 
         $plate = $_GET['targa'];
-        echo "plate obtained";
+        GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
         /* Prendo i dati dal database */ 
         $data = check_db($plate);
 
@@ -64,10 +64,10 @@
         if($data[0])
         {
             $data = $data[1];
-            echo "Data obtained";
+            GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
         }
         else
-            echo "There's been an error obtaining the data";
+            GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
         
         /* Costruzione url */
         	
