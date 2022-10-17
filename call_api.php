@@ -51,7 +51,7 @@
         $current_page = GFFormDisplay::get_current_page( $form['id'] );      
         if ( $current_page != 2) {
             echo 'Incorrect page';
-            return;
+            return $form;
         }
 
         $plate = $_GET['targa'];
