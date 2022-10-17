@@ -98,14 +98,17 @@
         catch (GuzzleHttp\Exception\ClientException $e) {
             $response = $e->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): error: ' . $responseBodyAsString);
         }
         catch (GuzzleHttp\Exception\ServerException $e) {
             $response = $e->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): error: ' . $responseBodyAsString);
         }
         catch (GuzzleHttp\Exception\BadResponseException $e) {
             $response = $e->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): error: ' . $responseBodyAsString);
         }
 
         $content= json_decode($response->getBody()); 
