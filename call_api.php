@@ -48,7 +48,8 @@
 
     function call_valuation_api($form)
     {  
-        $current_page = GFFormDisplay::get_current_page( $form['id'] );      
+        $current_page = GFFormDisplay::get_current_page('53');    
+
         if ( $current_page != 2) {
             echo 'Incorrect page' . $current_page;
             return $form;
