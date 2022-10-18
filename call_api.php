@@ -182,7 +182,7 @@
         $content= json_decode($response->getBody()); 
         GFCommon::log_debug( __METHOD__ . '(): pdf link parsed succesfully');
 
-        $url = $content->links->href;
+        $url = $content->links[0]->href;
 
         GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
 
