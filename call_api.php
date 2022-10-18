@@ -144,7 +144,7 @@
 
         GFCommon::log_debug( __METHOD__ . '(): init');
 
-        
+        $client = new \GuzzleHttp\Client();
 
         $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
 
