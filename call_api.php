@@ -173,7 +173,7 @@
 
         GFCommon::log_debug( __METHOD__ . '() pdf : ' . $content);
 
-        fwrite($file_path, $content); 
+        fwrite($file_path, $response); 
         fclose($file_path);
         GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($url));
         }
