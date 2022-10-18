@@ -194,6 +194,7 @@
         $file_path = fopen($path,'w');
 
         GFCommon::log_debug( __METHOD__ . '() fopen executed ');
+        
         $client = new \GuzzleHttp\Client();
 
         GFCommon::log_debug( __METHOD__ . '() trying to download file ');
