@@ -189,47 +189,23 @@
         GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
 
 
-        $pdfFilePath = __DIR__ . 'pdf/' . basename($url) . '.pdf';
-        $pdfFileResource = fopen($pdfFilePath, 'w+');
+        $path = __DIR__ . '/pdf/' . basename($url) . '.pdf';
 
-        
-        $httpClient = new Client();
-
+        $file_path = fopen($path,'w');
+        $client = new \GuzzleHttp\Client();
         $headers = [
-            'Accept'        => 'application/pdf; charset=UTF-8',
             'Authorization' => 'Basic ' . $credentials,
-            'Accept-Language'  => 'it-IT',
-            'Accept-Encoding' => 'gzip',
-            RequestOptions::SINK => $pdfFileResource,
+            'sink' => $file_path
         ];
 
+        $response = $client->get($url, $headers);
 
-        try{
-            $response = $httpClient->get(
-                $url,
-                $headers
-            );
-        }
-        catch (GuzzleHttp\Exception\ClientException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (GuzzleHttp\Exception\ServerException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (GuzzleHttp\Exception\BadResponseException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
+        GFCommon::log_debug( __METHOD__ . '() response_code: ' .$response->getStatusCode());
+        
+        GFCommon::log_debug( __METHOD__ . '() name: ' . basename($url));
 
-
-        if ($response->getStatusCode() === 200) {
-            echo 'The pdf has been successfully downloaded: ' . $pdfFilePath;
-        }
+        
+        
 
     
 

@@ -1,5 +1,6 @@
 <?php
 
+// Da cambiare in produzione
     require '/var/www/vhosts/vroomauto.it/stggestionale.vroomauto.it/vendor/autoload.php';
 
     include 'call_api.php';
