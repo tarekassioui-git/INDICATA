@@ -36,11 +36,7 @@
             'Accept-Encoding' => 'gzip'
         ];
 
-        $response       = $client->request('GET', $url, [
-            'headers'   => $headers
-        ]);   
-
-        $content= json_decode($response->getBody()); 
+        $content = call_api($client, $url, ['headers' => $headers]);
 
         /* Lettura e gestione della risposta */ 
         parse_registration($content);
@@ -93,44 +89,22 @@
 
         GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
-        $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
+        
 
         // GET with basic auth and headers
         $headers = [
             'Accept'        => 'application/json; charset=UTF-8',
-            'Authorization' => 'Basic ' . $credentials,
+            'Authorization' => 'Basic ' . TOKEN_INDICATA,
             'Accept-Language'  => 'it-IT',
             'Accept-Encoding' => 'gzip'
         ];
 
         GFCommon::log_debug( __METHOD__ . '(): calling api: ');
 
-        try{
-            $response = $client->request('GET', $url, [
-                'headers'   => $headers
-            ]); 
-            GFCommon::log_debug( __METHOD__ . '(): api called succesfully');
-        }
-        catch (GuzzleHttp\Exception\ClientException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (GuzzleHttp\Exception\ServerException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (GuzzleHttp\Exception\BadResponseException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
+        $content = call_api($client,$url ,['headers' => $headers]);
 
 
         GFCommon::log_debug( __METHOD__ . '(): response recieved and decoded');
-
-        $content= json_decode($response->getBody()); 
 
         parse_valuation($content);
 
@@ -148,19 +122,62 @@
 
         $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
 
-        // GET with basic auth and headers
         $headers = [
             'Accept'        => 'application/json; charset=UTF-8',
-            'Authorization' => 'Basic ' . $credentials,
+            'Authorization' => 'Basic ' . TOKEN_INDICATA,
+            'Accept-Language'  => 'it-IT',
+            'Accept-Encoding' => 'gzip'
+        ];
+
+        $content = call_api($client, $url, ['headers' => $headers]);
+
+        GFCommon::log_debug( __METHOD__ . '(): pdf link parsed succesfully');
+
+        $url = $content->links[0]->href;
+
+        GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
+
+        downloadPDF($url);
+    }
+
+
+    function downloadPDF($url)
+    {
+        // Downloading PDF
+        $path = __DIR__ . '/pdf/' . basename($url) . '.pdf';
+
+        $file_path = fopen($path,'w');
+
+        GFCommon::log_debug( __METHOD__ . '() fopen executed ');
+
+        $client = new \GuzzleHttp\Client();
+
+        $headers = [
+            'Connection' => 'keep-alive',
+            'Accept'        => 'application/pdf; charset=UTF-8',
+            'Authorization' => 'Basic ' . TOKEN_INDICATA,
             'Accept-Language'  => 'it-IT',
             'Accept-Encoding' => 'gzip'
         ];
 
 
+
+        GFCommon::log_debug( __METHOD__ . '() trying to download file ');
+
+        $url = trim($url);
+
+        $response = $client->request('GET', $url, ['headers' => $headers, 'sink' => $file_path]); 
+
+        GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($url));
+    }
+
+
+
+
+    function call_api($client, $url, $headers)
+    {  
         try{
-            $response = $client->request('GET', $url, [
-                'headers'   => $headers
-            ]); 
+            $response = $client->request('GET', $url, $headers); 
             GFCommon::log_debug( __METHOD__ . '(): api called succesfully');
         }
         catch (GuzzleHttp\Exception\ClientException $e) {
@@ -185,73 +202,9 @@
             GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
         }
 
-        
         $content= json_decode($response->getBody()); 
-        GFCommon::log_debug( __METHOD__ . '(): pdf link parsed succesfully');
 
-        $url = $content->links[0]->href;
-
-        GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
-
-
-        $path = __DIR__ . '/pdf/' . basename($url) . '.pdf';
-
-        $file_path = fopen($path,'w');
-
-        GFCommon::log_debug( __METHOD__ . '() fopen executed ');
-
-        $client = new \GuzzleHttp\Client();
-
-        $headers = [
-            'Connection' => 'keep-alive',
-            'Accept'        => 'application/pdf; charset=UTF-8',
-            'Authorization' => 'Basic ' . $credentials,
-            'Accept-Language'  => 'it-IT',
-            'Accept-Encoding' => 'gzip'
-        ];
-
-
-
-        GFCommon::log_debug( __METHOD__ . '() trying to download file ');
-
-        $url = trim($url);
-
-        try{
-            $response = $client->request('GET', $url, [
-                'headers'   => $headers,
-                'sink' => $file_path
-                
-
-            ]);
-
-            GFCommon::log_debug( __METHOD__ . '() api called succesfully: ');
-        }
-        catch (GuzzleHttp\Exception\ClientException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (GuzzleHttp\Exception\ServerException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (GuzzleHttp\Exception\BadResponseException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (Exception $e)
-        {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-
-        GFCommon::log_debug( __METHOD__ . '() response_code: ' .$response->getStatusCode());
-        
-        GFCommon::log_debug( __METHOD__ . '() name: ' . basename($url));
-
+        return $content; 
     }
 
 
