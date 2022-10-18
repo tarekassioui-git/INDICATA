@@ -186,53 +186,20 @@
 
         GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
 
+        $headers = [
+            'Accept'        => 'application/json; charset=UTF-8',
+            'Authorization' => 'Basic ' . $credentials,
+            'Accept-Language'  => 'it-IT',
+            'Accept-Encoding' => 'gzip',
+            'sink' => '/pdf/' . basename($url)
+        ];
         
-        // Use basename() function to return the base name of file
-        $file_name = basename($url);
-        
-        // Use file_get_contents() function to get the file
-        // from url and use file_put_contents() function to
-        // save the file by using base name
-        if (file_put_contents($file_name, file_get_contents($url)))
-        {
-            GFCommon::log_debug( __METHOD__ . '(): file downloaded: ');
-        }
-        else
-        {
-            GFCommon::log_debug( __METHOD__ . '(): file not downloaded ');
-        }
 
+        $response = $client->request('GET', $url, [
+            'headers'   => $headers
+        ]);
 
-/*         GFCommon::log_debug( __METHOD__ . '(): trying pdf download');
-        try{
-            $response = $client->request('GET', $url, [
-                'headers'   => $headers
-            ]); 
-            GFCommon::log_debug( __METHOD__ . '(): pdf download called succesfully');
-        }
-        catch (GuzzleHttp\Exception\ClientException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (GuzzleHttp\Exception\ServerException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (GuzzleHttp\Exception\BadResponseException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-
-        GFCommon::log_debug( __METHOD__ . '(): API error: ' . $response);
-
-        $content= json_decode($response->getBody());
-
-        GFCommon::log_debug( __METHOD__ . '(): pdf download decoded succesfully'); */
-
-
+        GFCommon::log_debug( __METHOD__ . '(): file downloaded in /pdf/' . basename($url));
 
     }
 
