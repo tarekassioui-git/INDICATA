@@ -171,7 +171,7 @@
 
         $response = $client->request('GET', $url, ['headers' => $headers]); 
 
-        GFCommon::log_debug( __METHOD__ . '() pdf : ' . $content);
+        GFCommon::log_debug( __METHOD__ . '() pdf : ' . $response);
 
         fwrite($file_path, $response); 
         fclose($file_path);
