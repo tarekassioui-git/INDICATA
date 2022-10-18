@@ -102,8 +102,8 @@
         $parsed_valuation['daysToSell'] = $content->maxPurchasePriceBreakdown->daysToSell;
         $parsed_valuation['pdf_link'] = $content->pdf->href;
 
-        getPdf($parsed_valuation['pdf_link'])
-        fill_Valuation($parsed_valuation);
+        getPdf($parsed_valuation['pdf_link']);
+        //fill_Valuation($parsed_valuation);
     }
 
 ?>
