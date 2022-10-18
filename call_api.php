@@ -204,7 +204,8 @@
 
         GFCommon::log_debug( __METHOD__ . '() trying to download file ');
 
-
+        $url = trim($url);
+        
         try{
             $response = $client->request('GET', $url, [
                 'headers'   => $headers,
