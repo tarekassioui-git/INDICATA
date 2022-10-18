@@ -191,7 +191,7 @@
             'Authorization' => 'Basic ' . $credentials,
             'Accept-Language'  => 'it-IT',
             'Accept-Encoding' => 'gzip',
-            'sink' => '/pdf/' . basename($url)
+            'sink' => '/var/www/vhosts/vroomauto.it/stggestionale.vroomauto.it/INDICATA/pdf/' . basename($url) . '.pdf'
         ];
         
         try{
@@ -216,7 +216,7 @@
             GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
         }
 
-        GFCommon::log_debug( __METHOD__ . '(): file downloaded in /pdf/' . basename($url));
+        GFCommon::log_debug( __METHOD__ . '(): file downloaded in /var/www/vhosts/vroomauto.it/stggestionale.vroomauto.it/INDICATA/pdf/' . basename($url));
 
     }
 
