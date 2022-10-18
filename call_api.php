@@ -203,6 +203,7 @@
         $client = new \GuzzleHttp\Client();
 
         $headers = [
+            'Connection' => 'keep-alive',
             'Accept'        => 'application/pdf; charset=UTF-8',
             'Authorization' => 'Basic ' . $credentials,
             'Accept-Language'  => 'it-IT',
