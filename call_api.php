@@ -85,7 +85,7 @@
 
         GFCommon::log_debug( __METHOD__ . '(): POST: ' . print_r($_POST, TRUE));
 
-        $km = $_POST['input_53_13'];  
+        $km = $_POST['input_13'];  
 
         $url = $url . '&' . $km; 
 
