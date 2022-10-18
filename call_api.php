@@ -194,10 +194,27 @@
             'sink' => '/pdf/' . basename($url)
         ];
         
+        try{
+            $response = $client->request('GET', $url, [
+                'headers'   => $headers
+            ]);
 
-        $response = $client->request('GET', $url, [
-            'headers'   => $headers
-        ]);
+        }
+        catch (GuzzleHttp\Exception\ClientException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
+        catch (GuzzleHttp\Exception\ServerException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
+        catch (GuzzleHttp\Exception\BadResponseException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
 
         GFCommon::log_debug( __METHOD__ . '(): file downloaded in /pdf/' . basename($url));
 
