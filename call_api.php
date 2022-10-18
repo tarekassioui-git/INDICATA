@@ -202,10 +202,19 @@
 
         $client = new \GuzzleHttp\Client();
 
+        $headers = [
+            'Accept'        => 'application/pdf; charset=UTF-8',
+            'Authorization' => 'Basic ' . $credentials,
+            'Accept-Language'  => 'it-IT',
+            'Accept-Encoding' => 'gzip'
+        ];
+
+
+
         GFCommon::log_debug( __METHOD__ . '() trying to download file ');
 
         $url = trim($url);
-        
+
         try{
             $response = $client->request('GET', $url, [
                 'headers'   => $headers,
