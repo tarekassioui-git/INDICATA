@@ -87,7 +87,7 @@
 
         $km = $_POST['input_13'];  
 
-        $url = $url . '&' . $km; 
+        $url = $url . '&odometer=' . $km; 
 
         GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
