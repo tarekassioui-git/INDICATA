@@ -137,7 +137,7 @@
 
         GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
 
-        downloadPDF($url);
+        //downloadPDF($url);
     }
 
 
