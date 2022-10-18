@@ -223,6 +223,8 @@
                 
 
             ]);
+
+            GFCommon::log_debug( __METHOD__ . '() api called succesfully: ');
         }
         catch (GuzzleHttp\Exception\ClientException $e) {
             $response = $e->getResponse();
