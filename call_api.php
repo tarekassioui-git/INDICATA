@@ -196,11 +196,6 @@
         GFCommon::log_debug( __METHOD__ . '() fopen executed ');
         $client = new \GuzzleHttp\Client();
 
-        $headers = [
-            'Authorization' => 'Basic ' . $credentials,
-        ];
-
-
         GFCommon::log_debug( __METHOD__ . '() trying to download file ');
 
 
