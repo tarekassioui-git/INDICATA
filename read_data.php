@@ -87,4 +87,23 @@
         store_to_db($parsed_registration);
     }
 
+
+    function parse_valuation($content)
+    {
+        $parsed_valuation = Array();
+
+        $parsed_valuation['retail_100'] = $content->valuations[0]->amount->value;
+        $parsed_valuation['max_purchase_price'] = $content->valuations[1]->amount->value;
+        $parsed_valuation['mds']['overall'] = $content->mds->marketDaySupplyOverall;
+        $parsed_valuation['mds']['similar'] = $content->mds->marketDaySupplySimilar;
+        $parsed_valuation['mds']['market'] = $content->mds->marketDaySupplyMarket;
+        $parsed_valuation['mds']['make'] = $content->mds->marketDaySupplyMake;
+        $parsed_valuation['mds']['competitiveVeichlesSold'] = $content->mds->competitiveVehiclesSold;
+        $parsed_valuation['daysToSell'] = $content->maxPurchasePriceBreakdown->daysToSell;
+        $parsed_valuation['pdf_link'] = $content->pdf->href;
+
+        getPdf($parsed_valuation['pdf_link'])
+        fill_Valuation($parsed_valuation);
+    }
+
 ?>
