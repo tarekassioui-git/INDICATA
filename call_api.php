@@ -46,7 +46,7 @@
         return;
     }
 
-
+    	
     
     add_filter( 'gform_pre_render_53', 'call_valuation_api' );
 
@@ -81,6 +81,10 @@
 
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
         //$url = trim($url);
+
+        $km = $_POST['input_53_13'];  
+
+        $url = $url . '&' . $km; 
 
         GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
