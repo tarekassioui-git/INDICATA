@@ -3,6 +3,8 @@
     use GuzzleHttp\Exception\ServerException;
     use GuzzleHttp\Exception\ClientException;
     use GuzzleHttp\Exception\BadResponseException;
+    use GuzzleHttp\RequestOptions;
+    use GuzzleHttp\Client;
     
     /**
      * 
@@ -186,37 +188,31 @@
 
         GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
 
+
+        $pdfFilePath = __DIR__ . 'pdf/' . basename($url) . '.pdf';
+        $pdfFileResource = fopen($pdfFilePath, 'w+');
+
+        
+        $httpClient = new Client();
+
         $headers = [
             'Accept'        => 'application/json; charset=UTF-8',
             'Authorization' => 'Basic ' . $credentials,
             'Accept-Language'  => 'it-IT',
             'Accept-Encoding' => 'gzip',
-            'sink' => '/var/www/vhosts/vroomauto.it/stggestionale.vroomauto.it/INDICATA/pdf/' . basename($url) . '.pdf'
+            RequestOptions::SINK => $pdfFileResource,
         ];
-        
-        try{
-            $response = $client->request('GET', $url, [
-                'headers'   => $headers
-            ]);
 
-        }
-        catch (GuzzleHttp\Exception\ClientException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (GuzzleHttp\Exception\ServerException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
-        }
-        catch (GuzzleHttp\Exception\BadResponseException $e) {
-            $response = $e->getResponse();
-            $responseBodyAsString = $response->getBody()->getContents();
-            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        $response = $httpClient->get(
+            $url,
+            $headers
+        );
+
+        if ($response->getStatusCode() === 200) {
+            echo 'The pdf has been successfully downloaded: ' . $pdfFilePath;
         }
 
-        GFCommon::log_debug( __METHOD__ . '(): file downloaded in /var/www/vhosts/vroomauto.it/stggestionale.vroomauto.it/INDICATA/pdf/' . basename($url));
+    
 
     }
 
