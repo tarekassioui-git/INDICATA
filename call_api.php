@@ -82,6 +82,9 @@
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
         //$url = trim($url);
 
+
+        GFCommon::log_debug( __METHOD__ . '(): POST: ' . $_POST);
+
         $km = $_POST['input_53_13'];  
 
         $url = $url . '&' . $km; 
