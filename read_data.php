@@ -90,6 +90,8 @@
 
     function parse_valuation($content)
     {
+        GFCommon::log_debug( __METHOD__ . '(): init');
+
         $parsed_valuation = Array();
 
         $parsed_valuation['retail_100'] = $content->valuations[0]->amount->value;
@@ -101,6 +103,8 @@
         $parsed_valuation['mds']['competitiveVeichlesSold'] = $content->mds->competitiveVehiclesSold;
         $parsed_valuation['daysToSell'] = $content->maxPurchasePriceBreakdown->daysToSell;
         $parsed_valuation['pdf_link'] = $content->pdf->href;
+
+        GFCommon::log_debug( __METHOD__ . '(): parsed');
 
         getPdf($parsed_valuation['pdf_link']);
         //fill_Valuation($parsed_valuation);

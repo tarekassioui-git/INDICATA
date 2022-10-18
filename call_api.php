@@ -52,6 +52,9 @@
 
     function call_valuation_api($form)
     {  
+
+        GFCommon::log_debug( __METHOD__ . '(): init');
+
         $current_page = GFFormDisplay::get_current_page('53');    
 
         if ( $current_page != 2) {
@@ -82,9 +85,6 @@
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
         //$url = trim($url);
 
-
-        GFCommon::log_debug( __METHOD__ . '(): POST: ' . print_r($_POST, TRUE));
-
         $km = $_POST['input_13'];  
 
         $url = $url . '&odometer=' . $km; 
@@ -101,13 +101,13 @@
             'Accept-Encoding' => 'gzip'
         ];
 
-        GFCommon::log_debug( __METHOD__ . '(): calling api valuation: ');
-        
+        GFCommon::log_debug( __METHOD__ . '(): calling api: ');
+
         try{
             $response = $client->request('GET', $url, [
                 'headers'   => $headers
             ]); 
-            GFCommon::log_debug( __METHOD__ . '(): api called');
+            GFCommon::log_debug( __METHOD__ . '(): api called succesfully');
         }
         catch (GuzzleHttp\Exception\ClientException $e) {
             $response = $e->getResponse();
@@ -126,7 +126,7 @@
         }
 
 
-        GFCommon::log_debug( __METHOD__ . '(): I am decoding the response: ' . $response->getBody());
+        GFCommon::log_debug( __METHOD__ . '(): response recieved and decoded');
 
         $content= json_decode($response->getBody()); 
 
@@ -139,6 +139,9 @@
 
     function getPdf($url)
     {
+
+        GFCommon::log_debug( __METHOD__ . '(): init');
+
         $client = new GuzzleHttp\Client();
 
         $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
@@ -156,7 +159,7 @@
             $response = $client->request('GET', $url, [
                 'headers'   => $headers
             ]); 
-            GFCommon::log_debug( __METHOD__ . '(): api link pdf called');
+            GFCommon::log_debug( __METHOD__ . '(): api called succesfully');
         }
         catch (GuzzleHttp\Exception\ClientException $e) {
             $response = $e->getResponse();
@@ -175,16 +178,19 @@
         }
 
 
+        
         $content= json_decode($response->getBody()); 
+        GFCommon::log_debug( __METHOD__ . '(): pdf link parsed succesfully');
 
         $url = $content->links->href;
 
 
+        GFCommon::log_debug( __METHOD__ . '(): trying pdf download');
         try{
             $response = $client->request('GET', $url, [
                 'headers'   => $headers
             ]); 
-            GFCommon::log_debug( __METHOD__ . '(): api called pdf');
+            GFCommon::log_debug( __METHOD__ . '(): pdf download called succesfully');
         }
         catch (GuzzleHttp\Exception\ClientException $e) {
             $response = $e->getResponse();
@@ -205,6 +211,8 @@
         GFCommon::log_debug( __METHOD__ . '(): API error: ' . $response);
 
         $content= json_decode($response->getBody());
+
+        GFCommon::log_debug( __METHOD__ . '(): pdf download decoded succesfully');
 
     }
 
