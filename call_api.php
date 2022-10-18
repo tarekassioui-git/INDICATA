@@ -102,6 +102,7 @@
         ];
 
         GFCommon::log_debug( __METHOD__ . '(): calling api valuation: ');
+        
         try{
             $response = $client->request('GET', $url, [
                 'headers'   => $headers
