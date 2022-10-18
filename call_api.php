@@ -203,10 +203,29 @@
             RequestOptions::SINK => $pdfFileResource,
         ];
 
-        $response = $httpClient->get(
-            $url,
-            $headers
-        );
+
+        try{
+            $response = $httpClient->get(
+                $url,
+                $headers
+            );
+        }
+        catch (GuzzleHttp\Exception\ClientException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
+        catch (GuzzleHttp\Exception\ServerException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
+        catch (GuzzleHttp\Exception\BadResponseException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
+
 
         if ($response->getStatusCode() === 200) {
             echo 'The pdf has been successfully downloaded: ' . $pdfFilePath;
