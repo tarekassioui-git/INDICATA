@@ -194,17 +194,35 @@
         $file_path = fopen($path,'w');
 
         GFCommon::log_debug( __METHOD__ . '() fopen executed ');
-        
+
         $client = new \GuzzleHttp\Client();
 
         GFCommon::log_debug( __METHOD__ . '() trying to download file ');
 
 
-        $response = $client->request('GET', $url, [
-            'headers'   => $headers,
-            'sink' => $file_path
-            
-        ]);
+        try{
+            $response = $client->request('GET', $url, [
+                'headers'   => $headers,
+                'sink' => $file_path
+                
+
+            ]);
+        }
+        catch (GuzzleHttp\Exception\ClientException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
+        catch (GuzzleHttp\Exception\ServerException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
+        catch (GuzzleHttp\Exception\BadResponseException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
 
         GFCommon::log_debug( __METHOD__ . '() response_code: ' .$response->getStatusCode());
         
