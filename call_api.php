@@ -192,6 +192,8 @@
         $path = __DIR__ . '/pdf/' . basename($url) . '.pdf';
 
         $file_path = fopen($path,'w');
+
+        GFCommon::log_debug( __METHOD__ . '() fopen executed ');
         $client = new \GuzzleHttp\Client();
         $headers = [
             'Authorization' => 'Basic ' . $credentials,
@@ -203,11 +205,6 @@
         GFCommon::log_debug( __METHOD__ . '() response_code: ' .$response->getStatusCode());
         
         GFCommon::log_debug( __METHOD__ . '() name: ' . basename($url));
-
-        
-        
-
-    
 
     }
 
