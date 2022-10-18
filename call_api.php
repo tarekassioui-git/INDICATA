@@ -198,13 +198,17 @@
 
         $headers = [
             'Authorization' => 'Basic ' . $credentials,
-            'sink' => $file_path
         ];
 
 
         GFCommon::log_debug( __METHOD__ . '() trying to download file ');
-        
-        $response = $client->get($url, $headers);
+
+
+        $response = $client->request('GET', $url, [
+            'headers'   => $headers,
+            'sink' => $file_path
+            
+        ]);
 
         GFCommon::log_debug( __METHOD__ . '() response_code: ' .$response->getStatusCode());
         
