@@ -195,11 +195,15 @@
 
         GFCommon::log_debug( __METHOD__ . '() fopen executed ');
         $client = new \GuzzleHttp\Client();
+
         $headers = [
             'Authorization' => 'Basic ' . $credentials,
             'sink' => $file_path
         ];
 
+
+        GFCommon::log_debug( __METHOD__ . '() trying to download file ');
+        
         $response = $client->get($url, $headers);
 
         GFCommon::log_debug( __METHOD__ . '() response_code: ' .$response->getStatusCode());
