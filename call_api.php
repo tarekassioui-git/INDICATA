@@ -169,7 +169,7 @@
 
         $url = trim($url);
 
-        $content = $client->request('GET', $url, ['headers' => $headers]); 
+        $response = $client->request('GET', $url, ['headers' => $headers]); 
 
         GFCommon::log_debug( __METHOD__ . '() pdf : ' . $content);
 
