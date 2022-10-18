@@ -144,7 +144,7 @@
 
         GFCommon::log_debug( __METHOD__ . '(): init');
 
-        $client = new GuzzleHttp\Client();
+        
 
         $credentials = base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
 
@@ -178,7 +178,12 @@
             $responseBodyAsString = $response->getBody()->getContents();
             GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
         }
-
+        catch (Exception $e)
+        {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
 
         
         $content= json_decode($response->getBody()); 
@@ -219,6 +224,12 @@
             GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
         }
         catch (GuzzleHttp\Exception\BadResponseException $e) {
+            $response = $e->getResponse();
+            $responseBodyAsString = $response->getBody()->getContents();
+            GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
+        }
+        catch (Exception $e)
+        {
             $response = $e->getResponse();
             $responseBodyAsString = $response->getBody()->getContents();
             GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
