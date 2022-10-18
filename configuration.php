@@ -13,7 +13,7 @@
     define('USERNAME_INDICATA', 'vroom_ws@dev.null');
     define('PASSWORD_INDICATA', 'N9qAckhq');
     
-    define('TOKEN_INDICATA', base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA);
+    define('TOKEN_INDICATA', base64_encode(USERNAME_INDICATA . ':' . PASSWORD_INDICATA));
 
     /* Credentials for DATABASE connection */
     define('NAME_DB', 'localhost:3306');
