@@ -94,10 +94,12 @@
             'Accept-Encoding' => 'gzip'
         ];
 
+        GFCommon::log_debug( __METHOD__ . '(): calling api: ');
         try{
             $response = $client->request('GET', $url, [
                 'headers'   => $headers
             ]); 
+            GFCommon::log_debug( __METHOD__ . '(): api called');
         }
         catch (GuzzleHttp\Exception\ClientException $e) {
             $response = $e->getResponse();
