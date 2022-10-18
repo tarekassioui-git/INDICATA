@@ -196,7 +196,7 @@
         $httpClient = new Client();
 
         $headers = [
-            'Accept'        => 'application/json; charset=UTF-8',
+            'Accept'        => 'application/pdf; charset=UTF-8',
             'Authorization' => 'Basic ' . $credentials,
             'Accept-Language'  => 'it-IT',
             'Accept-Encoding' => 'gzip',
