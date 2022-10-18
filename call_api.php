@@ -117,6 +117,8 @@
             GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
         }
 
+
+        GFCommon::log_debug( __METHOD__ . '(): I am decoding the response: ' . $response->getBody());
         $content= json_decode($response->getBody()); 
 
         var_dump($content);
