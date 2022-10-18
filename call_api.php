@@ -203,7 +203,7 @@
         }
 
 
-        GFCommon::log_debug( __METHOD__ . '(): trying pdf download');
+/*         GFCommon::log_debug( __METHOD__ . '(): trying pdf download');
         try{
             $response = $client->request('GET', $url, [
                 'headers'   => $headers
@@ -230,7 +230,7 @@
 
         $content= json_decode($response->getBody());
 
-        GFCommon::log_debug( __METHOD__ . '(): pdf download decoded succesfully');
+        GFCommon::log_debug( __METHOD__ . '(): pdf download decoded succesfully'); */
 
 
 
