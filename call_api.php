@@ -148,6 +148,8 @@
 
         $file_path = fopen($path,'w');
 
+        
+
         GFCommon::log_debug( __METHOD__ . '() fopen executed ');
 
         $client = new \GuzzleHttp\Client();
@@ -167,6 +169,9 @@
         $url = trim($url);
 
         $response = $client->request('GET', $url, ['headers' => $headers]); 
+
+
+        fwrite($file_path, $response); 
 
         GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($url));
     }
