@@ -83,7 +83,7 @@
         //$url = trim($url);
 
 
-        GFCommon::log_debug( __METHOD__ . '(): POST: ' . $_POST);
+        GFCommon::log_debug( __METHOD__ . '(): POST: ' . var_dump($_POST));
 
         $km = $_POST['input_53_13'];  
 
