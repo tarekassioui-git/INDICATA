@@ -133,6 +133,8 @@
 
         GFCommon::log_debug( __METHOD__ . '(): pdf link parsed succesfully');
 
+        GFCommon::log_debug( __METHOD__ . '(): PDF ' . print_r($content));
+
         $url = $content->links[0]->href;
 
         GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
