@@ -169,7 +169,7 @@
 
         GFCommon::log_debug( __METHOD__ . '(): pdf link parsed succesfully');
 
-        GFCommon::log_debug( __METHOD__ . '(): PDF ' . print_r($content));
+        GFCommon::log_debug( __METHOD__ . '(): PDF ' . print_r($response->getStatusCode()));
 
         $url = $content->links[0]->href;
 
