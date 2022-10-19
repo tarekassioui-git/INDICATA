@@ -205,14 +205,10 @@
             GFCommon::log_debug( __METHOD__ . '() fopen executed ');
 
             /* Creo il client */
-            $client = new \GuzzleHttp\Client($url, array(
-                'request.options' => array(
-                   'exceptions' => false,
-                )));
+            $client = new \GuzzleHttp\Client();
 
             /* Assegno gli headers */
             $headers = [
-                'Connection' => 'keep-alive',
                 'Accept'        => 'application/pdf; charset=UTF-8',
                 'Authorization' => 'Basic ' . TOKEN_INDICATA,
                 'Accept-Language'  => 'it-IT',
