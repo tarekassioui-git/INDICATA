@@ -223,10 +223,10 @@
             /* Effettuo la chiamata  */
             $response = $client->request('GET', $url, ['headers' => $headers, 'sink' => $file_path]); 
 
-            GFCommon::log_debug( __METHOD__ . '() pdf : ' . $response);
+            //GFCommon::log_debug( __METHOD__ . '() pdf : ' . $response);
 
             /* Scrivo il contenuto della risposta sul file */
-            fwrite($file_path, $response);
+            //fwrite($file_path, $response);
 
             /* Chiudo il file */
             fclose($file_path);
