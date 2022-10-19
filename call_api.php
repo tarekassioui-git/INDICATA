@@ -232,7 +232,9 @@
             /* Chiudo il file */
             fclose($file_path);
             GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($url));
+
         }
+        
         catch (Exception $e)
         {
             GFCommon::log_debug( __METHOD__ . '() Exception' . $e);          
