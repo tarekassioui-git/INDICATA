@@ -180,8 +180,8 @@
         $test = explode('/',$url);
         if(array_pop($test) == 'status')
             getPdf($url);
-        /* Funzione per scaricare il PDF */
-        downloadPDF($url);
+        else
+            downloadPDF($url);
     }
 
 
