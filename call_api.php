@@ -137,45 +137,45 @@
 
         GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
 
-        //downloadPDF($url);
+        downloadPDF($url);
     }
 
 
     function downloadPDF($url)
     {
         try{
-        // Downloading PDF
-        $path = __DIR__ . '/pdf/' . basename($url) . '.pdf';
+            // Downloading PDF
+            $path = __DIR__ . '/pdf/' . basename($url) . '.pdf';
 
-        $file_path = fopen($path,'w');
+            $file_path = fopen($path,'w');
 
-        
+            
 
-        GFCommon::log_debug( __METHOD__ . '() fopen executed ');
+            GFCommon::log_debug( __METHOD__ . '() fopen executed ');
 
-        $client = new \GuzzleHttp\Client();
+            $client = new \GuzzleHttp\Client();
 
-        $headers = [
-            'Connection' => 'keep-alive',
-            'Accept'        => 'application/pdf; charset=UTF-8',
-            'Authorization' => 'Basic ' . TOKEN_INDICATA,
-            'Accept-Language'  => 'it-IT',
-            'Accept-Encoding' => 'gzip'
-        ];
+            $headers = [
+                'Connection' => 'keep-alive',
+                'Accept'        => 'application/pdf; charset=UTF-8',
+                'Authorization' => 'Basic ' . TOKEN_INDICATA,
+                'Accept-Language'  => 'it-IT',
+                'Accept-Encoding' => 'gzip'
+            ];
 
 
 
-        GFCommon::log_debug( __METHOD__ . '() trying to download file ');
+            GFCommon::log_debug( __METHOD__ . '() trying to download file ');
 
-        $url = trim($url);
+            $url = trim($url);
 
-        $response = $client->request('GET', $url, ['headers' => $headers]); 
+            $response = $client->request('GET', $url, ['headers' => $headers]); 
 
-        GFCommon::log_debug( __METHOD__ . '() pdf : ' . $response);
+            GFCommon::log_debug( __METHOD__ . '() pdf : ' . $response);
 
-        fwrite($file_path, $response); 
-        fclose($file_path);
-        GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($url));
+            fwrite($file_path, $response); 
+            fclose($file_path);
+            GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($url));
         }
         catch (Exception $e)
         {
