@@ -35,7 +35,7 @@
             'Accept-Encoding' => 'gzip'
         ];
 
-        $content = call_api('GET', $client, $url, ['headers' => $headers]);
+        $response = call_api('GET', $client, $url, ['headers' => $headers]);
         $content= json_decode($response->getBody());
 
         /* Lettura e gestione della risposta */ 
@@ -123,7 +123,7 @@
         GFCommon::log_debug( __METHOD__ . '(): calling api: ');
 
         /* Chiamata all'api */
-        $content = call_api('GET', $client,$url ,['headers' => $headers]);
+        $response = call_api('GET', $client,$url ,['headers' => $headers]);
         $content= json_decode($response->getBody());
 
 
@@ -164,7 +164,7 @@
         ];
 
         /* Chiamo l'api */
-        $content = call_api('GET', $client, $url, ['headers' => $headers]);
+        $response = call_api('GET', $client, $url, ['headers' => $headers]);
         $content= json_decode($response->getBody());
 
         GFCommon::log_debug( __METHOD__ . '(): pdf link parsed succesfully');
