@@ -22,6 +22,8 @@
     function call_registration_number_api($plate)
     {
         
+        $time_start = microtime(true);
+
         /* Creazione client Guzzle */
         $client = new GuzzleHttp\Client();
 
@@ -41,6 +43,10 @@
 
         /* Lettura e gestione della risposta */ 
         parse_registration($content);
+
+        $time_end = microtime(true);
+
+        GFCommon::log_debug( __METHOD__ . ' execution time : ' . ($time_end - $time_start)/60 );
 
         return;
     }
@@ -65,7 +71,7 @@
     * */
     function call_valuation_api($form)
     {  
-
+        $time_start = microtime(true); 
         GFCommon::log_debug( __METHOD__ . '(): init');
 
         /* Ottengo la pagina corrente */
@@ -132,6 +138,10 @@
         /* Chiamo la funzione che leggerà i dati ottenuti */
         parse_valuation($content);
 
+        $time_end = microtime(true);
+        
+        GFCommon::log_debug( __METHOD__ . ' execution time : ' . ($time_end - $time_start)/60 );
+        
         return $form;
     }
 
