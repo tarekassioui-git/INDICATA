@@ -40,6 +40,10 @@
      * */ 
     function indicata_workflow()
     {   
+
+
+        $time_start = microtime(true);
+
         $plate = $_GET['targa'];
 
 
@@ -65,6 +69,10 @@
         else
             fill_registrationData($checked[1]);
     
+
+        $time_end = microtime(true);
+
+        GFCommon::log_debug( __METHOD__ . ' execution time : ' . ($time_end - $time_start)/60 );
 
     }   
 
