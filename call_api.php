@@ -171,17 +171,29 @@
         GFCommon::log_debug( __METHOD__ . '(): pdf link parsed succesfully');
 
         GFCommon::log_debug( __METHOD__ . '(): PDF ' . print_r($response->getStatusCode()));
-
+        
+        /* Ottengo il link di download */ 
         $url = $content->links[0]->href;
 
         GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
-        
 
+        
+        /**
+         *  
+         * Perché questo controllo?
+         * Questo controllo viene effettuato perché su alcuni veicoli quando viene effettuata la prima chiamata all'api 
+         * viene comunque restituito un link per ottenere il link di download e non il link di download direttamente.
+         * 
+         * Sappiamo che i link per ottenere i link di download finiscono per status, dunque controllando questa cosa 
+         * possiamo semplicemente chiamare ricorsivamente la funzione finché non otteniamo il link di download
+         * 
+         *  */ 
         $test = explode('/',$url);
         if(array_pop($test) == 'status')
             getPdf($url);
         else
             downloadPDF($url);
+            
     }
 
 
