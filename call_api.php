@@ -175,7 +175,11 @@
         $url = $content->links[0]->href;
 
         GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
+        
 
+        $test = explode('/',$url);
+        if(array_pop($test) == 'status')
+            getPdf($url);
         /* Funzione per scaricare il PDF */
         downloadPDF($url);
     }
@@ -222,7 +226,7 @@
 
             /* Effettuo la chiamata  */
             $response = $client->request('GET', $url, ['headers' => $headers, 'sink' => $file_path]); 
-
+            
             /* Chiudo il file */
             fclose($file_path);
             GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($url));
