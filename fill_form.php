@@ -112,7 +112,16 @@
 
 
 
-
+    /**
+     * 
+     * Gestisce il riempimento dei campi nella seconda pagina del form
+     * 
+     * @author Tarek Assioui
+     * 
+     * @param data i dati con cui riempire
+     * 
+     * @return value
+     */
     function fill_valuation($data)
     {
 
@@ -120,6 +129,20 @@
             return populate_fields( $value, $field, $name, $data);}, 10, 3);
     }
 
+
+    /**
+     * 
+     * Riempie i campi della seconda pagina del form
+     * 
+     * @author Tarek Assioui
+     * 
+     * @param value array di dati da riempire 
+     * 
+     * @param data array di dati con cui riempire
+     * 
+     * @return value array per riempire i fields su gravity forms
+     *     
+     */
     function populate_valuation($value, $field, $name, $data)
     {
         foreach ($data as $value)
