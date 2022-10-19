@@ -88,6 +88,16 @@
     }
 
 
+    /**
+     * Lettura dei file di valutazione 
+     * 
+     * @author Tarek Assioui   
+     * 
+     * @param content risposta da leggere
+     * 
+     * @return void
+     * 
+     */
     function parse_valuation($content)
     {
         GFCommon::log_debug( __METHOD__ . '(): init');
@@ -107,7 +117,7 @@
         GFCommon::log_debug( __METHOD__ . '(): parsed');
 
         getPdf($parsed_valuation['pdf_link']);
-        //fill_Valuation($parsed_valuation);
+        //fill_valuation($parsed_valuation);
     }
 
 ?>
