@@ -205,7 +205,10 @@
             GFCommon::log_debug( __METHOD__ . '() fopen executed ');
 
             /* Creo il client */
-            $client = new \GuzzleHttp\Client();
+            $client = new \GuzzleHttp\Client($url, array(
+                'request.options' => array(
+                   'exceptions' => false,
+                )));
 
             /* Assegno gli headers */
             $headers = [
@@ -239,6 +242,8 @@
         {
             GFCommon::log_debug( __METHOD__ . '() Exception' . $e);          
         }
+
+        
     }
 
     /**
