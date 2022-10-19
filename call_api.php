@@ -35,6 +35,7 @@
             'Accept-Encoding' => 'gzip'
         ];
 
+        GFCommon::log_debug( __METHOD__ . '(): calling: ' . $url);
         $response = call_api('GET', $client, $url, ['headers' => $headers]);
         $content= json_decode($response->getBody());
 
@@ -123,6 +124,7 @@
         GFCommon::log_debug( __METHOD__ . '(): calling api: ');
 
         /* Chiamata all'api */
+        GFCommon::log_debug( __METHOD__ . '(): calling: ' . $url);
         $response = call_api('GET', $client,$url ,['headers' => $headers]);
         $content= json_decode($response->getBody());
 
@@ -164,6 +166,7 @@
         ];
 
         /* Chiamo l'api */
+        GFCommon::log_debug( __METHOD__ . '(): calling: ' . $url);
         $response = call_api('GET', $client, $url, ['headers' => $headers]);
         $content= json_decode($response->getBody());
 
