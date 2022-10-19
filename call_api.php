@@ -72,7 +72,7 @@
     function call_valuation_api($form)
     {  
         $time_start = microtime(true); 
-        GFCommon::log_debug( __METHOD__ . '(): init');
+        
 
         /* Ottengo la pagina corrente */
         $current_page = GFFormDisplay::get_current_page('53');    
@@ -82,6 +82,7 @@
             GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
             return $form;
         }
+        GFCommon::log_debug( __METHOD__ . '(): init');
 
         /* Ottengo la targa */
         $plate = $_GET['targa'];
