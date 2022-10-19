@@ -110,4 +110,28 @@
         return isset( $values[ $name ] ) ? $values[ $name ] : $value;
     }
 
+
+
+
+    function fill_valuation($data)
+    {
+
+        add_filter('gform_field_value',function( $value, $field, $name ) use ( $data ) {
+            return populate_fields( $value, $field, $name, $data);}, 10, 3);
+    }
+
+    function populate_valuation($value, $field, $name, $data)
+    {
+        foreach ($data as $value)
+        {
+            if(!isset($value))
+                $value = "Error";
+        }
+
+        $values = array(
+            'retail' => $data['retail_100'],
+            'mds' => $data['mds']['overall'],
+        );
+
+    }
 ?>
