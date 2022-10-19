@@ -85,6 +85,8 @@
 
         $km = $_POST['input_13'];  
 
+        $_POST['allestimento-scelto'] = 'prova';
+
         $url = $url . '&odometer=' . $km; 
 
         GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
