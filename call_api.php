@@ -270,7 +270,7 @@
             
             /* Chiudo il file */
             fclose($file_path);
-            GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($url));
+            GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($path));
 
         }
         
