@@ -181,7 +181,7 @@
 
         GFCommon::log_debug( __METHOD__ . '(): pdf link parsed succesfully');
 
-        GFCommon::log_debug( __METHOD__ . '(): PDF ' . print_r($response->getStatusCode()));
+        GFCommon::log_debug( __METHOD__ . '(): PDF ' . print_r($response->getStatusCode(), TRUE));
         
         /* Ottengo il link di download */ 
         $url = $content->links[0]->href;
