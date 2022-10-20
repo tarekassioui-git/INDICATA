@@ -143,7 +143,7 @@
         for($i = 0; $i < sizeof($data['versione']); $i++)
         {
 
-            $sql = 'INSERT INTO `gestionale`.wp_versions (index, targa, versione, codice)
+            $sql = 'INSERT INTO `gestionale`.wp_versions (indice, targa, versione, codice)
             VALUES ("' . $data['targa']  . '-' . $data['versione'] . '", 
                 "' . $data['versione'][$i]['targa'] . '",
                 "' . $data['versione'][$i]['versione'] . '",
