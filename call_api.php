@@ -226,7 +226,7 @@
         try{
             
             $marca = $_POST['input_24'];
-            $modello = $_POST['input_23'];
+            $modello = $_POST['input_3'];
             $targa = $_POST['input_1'];
             $date = date('d-m-Y h:i:s');
 
