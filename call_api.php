@@ -114,6 +114,8 @@
         /* Ottengo i chilometri */
         $km = $_POST['input_13'];  
 
+        GFCommon::log_debug( __METHOD__ . '(): POST: ' . print_r($_POST, TRUE));
+
         /* Aggiungo i chilometri all'url */
         $url = $url . '&odometer=' . $km; 
         GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
