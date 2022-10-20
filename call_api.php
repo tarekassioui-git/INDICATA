@@ -201,7 +201,10 @@
          *  */ 
         $test = explode('/',$url);
         if(array_pop($test) == 'status')
+        {
+            sleep(0.5);
             getPdf($url);
+        }
         else
             downloadPDF($url);
             
