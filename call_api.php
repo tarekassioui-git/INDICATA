@@ -228,19 +228,18 @@
             $marca = $_POST['input_24'];
             $modello = $_POST['input_23'];
             $targa = $_POST['input_1'];
-            $allestimento = $_POST['allestimento'];
-            $date = date('d/m/Y');
+            $date = date('d/m/Y h:i:s');
 
 
             /* path di salvataggio del PDF */
-            $path = __DIR__ . '/pdf/' . $date . ' ' . $targa .  '-' . $marca  . ' ' . $modello . ' - ' . $allestimento . '.pdf';
+            $path = __DIR__ . '/pdf/' . $date . ' ' . $targa .  '-' . $marca  . ' ' . $modello . '.pdf';
 
             /* Apro il file */
             $file_path = fopen($path,'w');
 
             
 
-            GFCommon::log_debug( __METHOD__ . '() fopen executed ' . $file_path);
+            GFCommon::log_debug( __METHOD__ . '() fopen executed ');
 
             /* Creo il client */
             $client = new \GuzzleHttp\Client();
