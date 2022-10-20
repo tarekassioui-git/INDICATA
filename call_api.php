@@ -306,6 +306,7 @@
             /* Effettuo la chiamata */
             $response = $client->request($type, $url, $headers);
             GFCommon::log_debug( __METHOD__ . '(): api called succesfully');
+            return $response;
         }
         /* Catturo le varie possibili eccezioni */
         catch (GuzzleHttp\Exception\ClientException $e) {
@@ -329,10 +330,6 @@
             $responseBodyAsString = $response->getBody()->getContents();
             GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
         }
-
-
-
-        return $response;
     }
 
 
