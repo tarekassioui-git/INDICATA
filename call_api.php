@@ -232,7 +232,8 @@
 
 
             /* path di salvataggio del PDF */
-            $path = __DIR__ . '/pdf/' . $date . ' ' . $targa .  '-' . $marca  . ' ' . $modello . '.pdf';
+            $filename = $date . ' ' . $targa .  ' - ' . $marca  . ' ' . $modello;
+            $path = __DIR__ . '/pdf/' . $filename . '.pdf';
 
             /* Apro il file */
             $file_path = fopen($path,'w');
