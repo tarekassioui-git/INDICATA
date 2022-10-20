@@ -237,7 +237,7 @@
 
             
 
-            GFCommon::log_debug( __METHOD__ . '() fopen executed ');
+            GFCommon::log_debug( __METHOD__ . '() fopen executed ' . $file_path);
 
             /* Creo il client */
             $client = new \GuzzleHttp\Client();
