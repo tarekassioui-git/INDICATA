@@ -100,8 +100,10 @@
             GFCommon::log_debug( __METHOD__ . '(): data found: ' . $data );
         }
         else
+        {
             GFCommon::log_debug( __METHOD__ . '(): data not found: ');
-        
+            return;
+        }
 
         /*Inizio chiamata*/ 
         
