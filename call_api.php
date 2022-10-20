@@ -204,7 +204,7 @@
         $test = explode('/',$url);
         if(array_pop($test) == 'status')
         {
-            sleep(0.5);
+            sleep(1);
             getPdf($url);
         }
         else
