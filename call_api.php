@@ -240,7 +240,7 @@
             $timestamp = time();
             $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
             $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
-            $dt =  $dt->format('d.m.Y, H:i:s');
+            $dt =  $dt->format('d.m.Y, H');
             
 
 
