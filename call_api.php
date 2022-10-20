@@ -236,6 +236,11 @@
             $targa = str_replace('/', '-',$_POST['input_1']);
             //$date = str_replace('/', '-',date('d-m-Y h'));
             
+            /**
+             *
+             * Fonte Alex: https://stackoverflow.com/questions/20288789/php-date-with-timezone 
+             *
+            */
             $tz = 'Europe/Rome';
             $timestamp = time();
             $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
