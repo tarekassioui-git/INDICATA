@@ -240,6 +240,8 @@
             $filename = $date . ' ' . $targa .  ' - ' . $marca  . ' ' . $modello;
             $path = __DIR__ . '/pdf/' . $filename . '.pdf';
 
+            GFCommon::log_debug( __METHOD__ . '() Predicted file path : ' . $path );
+
             /* Apro il file */
             $file_path = fopen($path,'w');
 
