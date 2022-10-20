@@ -144,8 +144,8 @@
         {
 
             $sql = 'INSERT INTO `gestionale`.wp_versions (indice, targa, versione, codice)
-            VALUES ("' . $data['versione'][$i]['targa']  . '-' . $data['versione'][$i]['versione'] . '", 
-                "' . $data['versione'][$i]['targa'] . '",
+            VALUES ("' . $data['targa']  . '-' . $data['versione'][$i]['versione'] . '", 
+                "' . $data['targa'] . '",
                 "' . $data['versione'][$i]['versione'] . '",
                 "' . $data['versione'][$i]['codice'] . '")';
 
