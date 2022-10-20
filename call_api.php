@@ -222,7 +222,7 @@
     {
         try{
 
-            GFCommon::log_debug( __METHOD__ . '()  ' . print_r($_POST));
+            GFCommon::log_debug( __METHOD__ . '()  POST = ' . print_r($_POST));
             
             /* path di salvataggio del PDF */
             $path = __DIR__ . '/pdf/' . basename($url) . '.pdf';
