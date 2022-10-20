@@ -221,11 +221,15 @@
     function downloadPDF($url)
     {
         try{
-
-            GFCommon::log_debug( __METHOD__ . '()  POST = ' . print_r($_POST, TRUE));
             
+            $marca = $_POST['input_24'];
+            $modello = $_POST['input_23'];
+            $targa = $_POST['input_1'];
+            $date = date('d/m/Y');
+
+
             /* path di salvataggio del PDF */
-            $path = __DIR__ . '/pdf/' . basename($url) . '.pdf';
+            $path = __DIR__ . '/pdf/' . $date . ' ' . $targa .  '-' . $marca  . ' ' . $modello . '.pdf';
 
             /* Apro il file */
             $file_path = fopen($path,'w');
