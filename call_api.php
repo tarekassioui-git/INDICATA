@@ -228,7 +228,7 @@
             $marca = $_POST['input_24'];
             $modello = $_POST['input_23'];
             $targa = $_POST['input_1'];
-            $date = date('d/m/Y h:i:s');
+            $date = date('d-m-Y h:i:s');
 
             if(!isset($marca) || !isset($modello) || !isset($targa) || !isset($date))
             {
