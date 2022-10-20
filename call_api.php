@@ -234,17 +234,24 @@
             $marca = str_replace('/', '-', $_POST['input_24']);
             $modello = str_replace('/', '-',$_POST['input_3']);
             $targa = str_replace('/', '-',$_POST['input_1']);
-            $date = str_replace('/', '-',date('d-m-Y h'));
+            //$date = str_replace('/', '-',date('d-m-Y h'));
+            
+            $tz = 'Europe/Rome';
+            $timestamp = time();
+            $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+            $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+            $dt =  $dt->format('d.m.Y, H:i:s');
+            
 
 
-            if(!isset($marca) || !isset($modello) || !isset($targa) || !isset($date))
+            if(!isset($marca) || !isset($modello) || !isset($targa) || !isset($dt))
             {
                 GFCommon::log_debug( __METHOD__ . '() error creating file');
                 return;
             }
 
             /* path di salvataggio del PDF */
-            $filename = $date . ' ' . $targa .  ' - ' . $marca  . ' ' . $modello;
+            $filename = $dt . ' ' . $targa .  ' - ' . $marca  . ' ' . $modello;
             $path = __DIR__ . '/pdf/' . $filename . '.pdf';
 
             GFCommon::log_debug( __METHOD__ . '() Predicted file path : ' . $path );
