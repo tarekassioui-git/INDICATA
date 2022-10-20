@@ -143,10 +143,14 @@
         for($i = 0; $i < sizeof($data['versione']); $i++)
         {
 
-            $sql = 'INSERT INTO `gestionale`.wp_versions (targa, versione, codice)
-            VALUES ("' . $data['targa'] . '", 
+            $sql = 'INSERT INTO `gestionale`.wp_versions (index, targa, versione, codice)
+            VALUES ("' . $data['targa']  . '-' . $data['versione'] . '", 
+                "' . $data['versione'][$i]['targa'] . '",
                 "' . $data['versione'][$i]['versione'] . '",
                 "' . $data['versione'][$i]['codice'] . '")';
+
+            
+            
 
                 GFCommon::log_debug( __METHOD__ . '(): inserting : ' . $sql );
 
