@@ -230,6 +230,11 @@
             $targa = $_POST['input_1'];
             $date = date('d/m/Y h:i:s');
 
+            if(!isset($marca) || !isset($modello) || !isset($targa) || !isset($date))
+            {
+                GFCommon::log_debug( __METHOD__ . '() error creating file');
+                return;
+            }
 
             /* path di salvataggio del PDF */
             $filename = $date . ' ' . $targa .  ' - ' . $marca  . ' ' . $modello;
