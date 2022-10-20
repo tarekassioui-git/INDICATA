@@ -225,11 +225,12 @@
             $marca = $_POST['input_24'];
             $modello = $_POST['input_23'];
             $targa = $_POST['input_1'];
+            $allestimento = $_POST['allestimento'];
             $date = date('d/m/Y');
 
 
             /* path di salvataggio del PDF */
-            $path = __DIR__ . '/pdf/' . $date . ' ' . $targa .  '-' . $marca  . ' ' . $modello . '.pdf';
+            $path = __DIR__ . '/pdf/' . $date . ' ' . $targa .  '-' . $marca  . ' ' . $modello . ' - ' . $allestimento . '.pdf';
 
             /* Apro il file */
             $file_path = fopen($path,'w');
