@@ -263,10 +263,10 @@
             GFCommon::log_debug( __METHOD__ . '() trying to download file ');
 
             /* Tolgo gli spazi all'url */
-            $url = trim($url);
+            //$url = trim($url);
 
             /* Effettuo la chiamata  */
-            $response = $client->request('GET', $url, ['headers' => $headers, 'sink' => $file_path]); 
+            $client->request('GET', $url, ['headers' => $headers, 'sink' => $file_path]); 
             
             /* Chiudo il file */
             fclose($file_path);
