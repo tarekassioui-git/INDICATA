@@ -234,7 +234,7 @@
             $marca = str_replace('/', '-', $_POST['input_24']);
             $modello = str_replace('/', '-',$_POST['input_3']);
             $targa = str_replace('/', '-',$_POST['input_1']);
-            $date = str_replace('/', '-',date('d-m-Y h:i:s'));
+            $date = str_replace('/', '-',date('d-m-Y h'));
 
 
             if(!isset($marca) || !isset($modello) || !isset($targa) || !isset($date))
