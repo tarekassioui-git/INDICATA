@@ -72,7 +72,7 @@
 
         $time_end = microtime(true);
 
-        GFCommon::log_debug( __METHOD__ . ' execution time : ' . ($time_end - $time_start)/60 );
+        GFCommon::log_debug( __METHOD__ . ' execution time : ' . ($time_end - $time_start)/60);
 
     }   
 
