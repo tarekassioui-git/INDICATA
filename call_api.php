@@ -245,10 +245,8 @@
             $timestamp = time();
             $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
             $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
-            $dt =  $dt->format('d.m.Y, H');
+            $dt =  $dt->format('d.m.Y, H'); 
             
-
-
             if(!isset($marca) || !isset($modello) || !isset($targa) || !isset($dt))
             {
                 GFCommon::log_debug( __METHOD__ . '() error creating file');
