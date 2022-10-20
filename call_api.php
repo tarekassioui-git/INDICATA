@@ -102,7 +102,7 @@
         else
         {
             GFCommon::log_debug( __METHOD__ . '(): data not found: ');
-            return;
+            return $form;
         }
 
         /*Inizio chiamata*/ 
