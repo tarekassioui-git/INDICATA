@@ -152,9 +152,11 @@
         }
 
         $values = array(
-            'retail' => $data['retail_100'],
-            'mds' => $data['mds']['overall'],
+            'valore-commerciale' => $data['retail_100'],
+            'percentuale-valore-consigliato' => $data['mds']['overall'],
         );
+
+        return isset( $values[ $name ] ) ? $values[ $name ] : $value;
 
     }
 ?>
