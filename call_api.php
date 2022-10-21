@@ -143,7 +143,22 @@
         GFCommon::log_debug( __METHOD__ . '(): response recieved and decoded');
 
         /* Chiamo la funzione che leggerà i dati ottenuti */
-        parse_valuation($content);
+        $data = parse_valuation($content);
+
+        //Add a placeholder to field id 8, is not used with multi-select or radio, will overwrite placeholder set in form editor.
+        //Replace 8 with your actual field id.
+        $fields = $form['fields'];
+        foreach( $form['fields'] as &$field ) {
+            if ( $field->id == 22 ) {
+                $field->text = $data['retail_100'];
+            }
+            if ( $field->id == 176 ) {
+                $field->text = '98';
+            }
+            if ( $field->id == 206 ) {
+                $field->text = $data['mds']['overall'];
+            }   
+        }
 
         $time_end = microtime(true);
         

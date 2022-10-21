@@ -117,7 +117,8 @@
         GFCommon::log_debug( __METHOD__ . '(): parsed');
 
         getPdf($parsed_valuation['pdf_link']);
-        fill_valuation($parsed_valuation);
+        
+        return $parsed_valuation;
     }
 
 ?>
