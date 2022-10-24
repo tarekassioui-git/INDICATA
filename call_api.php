@@ -158,12 +158,16 @@
         foreach( $form['fields'] as $field ) {
             if ( $field->id == 22 ) {
                 $field->text = $data['retail_100'];
+                $_POST['input_22'] = $data['retail_100'];
             }
             if ( $field->id == 176 ) {
                 $field->text = 98;
+                $_POST['input_176'] = 98;
             }
             if ( $field->id == 206 ) {
                 $field->text = $data['mds']['overall'];
+
+                $_POST['input_206'] =  $data['mds']['overall'];
             }   
         }
 
