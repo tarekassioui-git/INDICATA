@@ -39,6 +39,13 @@
 
         GFCommon::log_debug( __METHOD__ . '(): calling: ' . $url);
         $response = call_api('GET', $client, $url, ['headers' => $headers]);
+        if(!isset($response))
+        {
+            GFCommon::log_debug( __METHOD__ . '(): error: ' . $response);
+            return;
+        }
+
+        
         $content= json_decode($response->getBody());
 
         /* Lettura e gestione della risposta */ 
