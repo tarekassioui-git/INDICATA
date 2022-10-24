@@ -160,7 +160,7 @@
                 $field->text = $data['retail_100'];
             }
             if ( $field->id == 176 ) {
-                $field->text = '98';
+                $field->text = 98;
             }
             if ( $field->id == 206 ) {
                 $field->text = $data['mds']['overall'];
