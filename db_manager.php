@@ -152,7 +152,7 @@
             
             
 
-                GFCommon::log_debug( __METHOD__ . '(): inserting : ' . $sql );
+                
 
             // Eseguo la query e ne controllo l'esito
             if ($conn->query($sql) === TRUE) 
