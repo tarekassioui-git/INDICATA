@@ -74,6 +74,10 @@
         $parsed_registration['valuation_url'] = $content->valuation[0]->href;
         $parsed_registration['valuation_url'] = str_replace('{/profiles}', '/RETAIL_100,SUPPLY_DEMAND,MAX_PURCHASE_PRICE_100,PDF,COMPETITIVE_SET', $parsed_registration['valuation_url']);
 
+
+        GFCommon::log_debug( __METHOD__ . '(): parsed data: ' . print_r($parsed_registration, TRUE) );
+
+
         /* Popolamento form */ 
         fill_registrationData($parsed_registration);
         
@@ -114,7 +118,7 @@
         $parsed_valuation['daysToSell'] = $content->maxPurchasePriceBreakdown->daysToSell;
         $parsed_valuation['pdf_link'] = $content->pdf->href;
 
-        GFCommon::log_debug( __METHOD__ . '(): parsed');
+        GFCommon::log_debug( __METHOD__ . '(): parsed data: ' . print_r($parsed_valuation, TRUE) );
 
         getPdf($parsed_valuation['pdf_link']);
         
