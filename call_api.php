@@ -154,8 +154,8 @@
 
         //Add a placeholder to field id 8, is not used with multi-select or radio, will overwrite placeholder set in form editor.
         //Replace 8 with your actual field id.
-        $fields = $form['fields'];
-        foreach( $fields as &$field ) {
+
+        foreach( $form['fields'] as $field ) {
             if ( $field->id == 22 ) {
                 $field->text = $data['retail_100'];
             }
