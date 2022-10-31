@@ -22,6 +22,8 @@
     function call_registration_number_api($plate)
     {
         
+        $time_start = microtime(true);
+
         /* Creazione client Guzzle */
         $client = new GuzzleHttp\Client();
 
@@ -35,11 +37,23 @@
             'Accept-Encoding' => 'gzip'
         ];
 
+        GFCommon::log_debug( __METHOD__ . '(): calling: ' . $url);
         $response = call_api('GET', $client, $url, ['headers' => $headers]);
+        if(!isset($response))
+        {
+            GFCommon::log_debug( __METHOD__ . '(): error: ' . $response);
+            return;
+        }
+
+        
         $content= json_decode($response->getBody());
 
         /* Lettura e gestione della risposta */ 
         parse_registration($content);
+
+        $time_end = microtime(true);
+
+        GFCommon::log_debug( __METHOD__ . ' execution time : ' . ($time_end - $time_start)/60 );
 
         return;
     }
@@ -64,8 +78,8 @@
     * */
     function call_valuation_api($form)
     {  
-
-        GFCommon::log_debug( __METHOD__ . '(): init');
+        $time_start = microtime(true); 
+        
 
         /* Ottengo la pagina corrente */
         $current_page = GFFormDisplay::get_current_page('53');    
@@ -75,6 +89,7 @@
             GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
             return $form;
         }
+        GFCommon::log_debug( __METHOD__ . '(): init');
 
         /* Ottengo la targa */
         $plate = $_GET['targa'];
@@ -92,13 +107,17 @@
             GFCommon::log_debug( __METHOD__ . '(): data found: ' . $data );
         }
         else
+        {
             GFCommon::log_debug( __METHOD__ . '(): data not found: ');
-        
+            return $form;
+        }
 
         /*Inizio chiamata*/ 
         
         /* Creazione client Guzzle */
         $client = new GuzzleHttp\Client();
+
+        GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
         /* Rimuovo la parte finale {/odometer ecc.} dall'url */
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
@@ -106,8 +125,10 @@
         /* Ottengo i chilometri */
         $km = $_POST['input_13'];  
 
+
         /* Aggiungo i chilometri all'url */
         $url = $url . '&odometer=' . $km; 
+        
         GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
         
@@ -120,9 +141,8 @@
             'Accept-Encoding' => 'gzip'
         ];
 
-        GFCommon::log_debug( __METHOD__ . '(): calling api: ');
-
         /* Chiamata all'api */
+        GFCommon::log_debug( __METHOD__ . '(): calling: ' . $url);
         $response = call_api('GET', $client,$url ,['headers' => $headers]);
         $content= json_decode($response->getBody());
 
@@ -130,8 +150,31 @@
         GFCommon::log_debug( __METHOD__ . '(): response recieved and decoded');
 
         /* Chiamo la funzione che leggerà i dati ottenuti */
-        parse_valuation($content);
+        $data = parse_valuation($content);
 
+        //Add a placeholder to field id 8, is not used with multi-select or radio, will overwrite placeholder set in form editor.
+        //Replace 8 with your actual field id.
+
+        foreach( $form['fields'] as $field ) {
+            if ( $field->id == 22 ) {
+                $field->text = $data['retail_100'];
+                $_POST['input_22'] = $data['retail_100'];
+            }
+            if ( $field->id == 176 ) {
+                $field->text = 98;
+                $_POST['input_176'] = 98;
+            }
+            if ( $field->id == 206 ) {
+                $field->text = $data['mds']['overall'];
+
+                $_POST['input_206'] =  $data['mds']['overall'];
+            }   
+        }
+
+        $time_end = microtime(true);
+        
+        GFCommon::log_debug( __METHOD__ . ' execution time : ' . ($time_end - $time_start)/60 );
+        
         return $form;
     }
 
@@ -164,18 +207,46 @@
         ];
 
         /* Chiamo l'api */
+        GFCommon::log_debug( __METHOD__ . '(): calling: ' . $url);
         $response = call_api('GET', $client, $url, ['headers' => $headers]);
+
+        if(!isset($response))
+        {
+            GFCommon::log_debug( __METHOD__ . '(): error: ' . $response);
+            return;
+        }
+
         $content= json_decode($response->getBody());
 
         GFCommon::log_debug( __METHOD__ . '(): pdf link parsed succesfully');
 
-        /* Ottengo il link di download del PDF */
+        GFCommon::log_debug( __METHOD__ . '(): PDF ' . print_r($response->getStatusCode(), TRUE));
+        
+        /* Ottengo il link di download */ 
         $url = $content->links[0]->href;
 
         GFCommon::log_debug( __METHOD__ . '(): download link: ' . $url);
 
-        /* Funzione per scaricare il PDF */
-        downloadPDF($url);
+        
+        /**
+         *  
+         * Perché questo controllo?
+         * Questo controllo viene effettuato perché su alcuni veicoli quando viene effettuata la prima chiamata all'api 
+         * viene comunque restituito un link per ottenere il link di download e non il link di download direttamente.
+         * 
+         * Sappiamo che i link per ottenere i link di download finiscono per status, dunque controllando questa cosa 
+         * possiamo semplicemente chiamare ricorsivamente la funzione finché non otteniamo il link di download
+         * 
+         *  */ 
+        $test = explode('/',$url);
+        if(array_pop($test) == 'status')
+        {
+            sleep(5);
+            getPdf($url);
+        }
+        else
+            downloadPDF($url);
+            
     }
 
 
@@ -192,8 +263,34 @@
     function downloadPDF($url)
     {
         try{
+            
+            $marca = str_replace('/', '-', $_POST['input_24']);
+            $modello = str_replace('/', '-',$_POST['input_3']);
+            $targa = str_replace('/', '-',$_POST['input_1']);
+            //$date = str_replace('/', '-',date('d-m-Y h'));
+            
+            /**
+             *
+             * Fonte Alex: https://stackoverflow.com/questions/20288789/php-date-with-timezone 
+             *
+            */
+            $tz = 'Europe/Rome';
+            $timestamp = time();
+            $dt = new DateTime("now", new DateTimeZone($tz)); //first argument "must" be a string
+            $dt->setTimestamp($timestamp); //adjust the object to correct timestamp
+            $dt =  $dt->format('d.m.Y, H'); 
+            
+            if(!isset($marca) || !isset($modello) || !isset($targa) || !isset($dt))
+            {
+                GFCommon::log_debug( __METHOD__ . '() error creating file');
+                return;
+            }
+
             /* path di salvataggio del PDF */
-            $path = __DIR__ . '/pdf/' . basename($url) . '.pdf';
+            $filename = $dt . ' ' . $targa .  ' - ' . $marca  . ' ' . $modello;
+            $path = __DIR__ . '/pdf/' . $filename . '.pdf';
+
+            GFCommon::log_debug( __METHOD__ . '() Predicted file path : ' . $path );
 
             /* Apro il file */
             $file_path = fopen($path,'w');
@@ -207,7 +304,6 @@
 
             /* Assegno gli headers */
             $headers = [
-                'Connection' => 'keep-alive',
                 'Accept'        => 'application/pdf; charset=UTF-8',
                 'Authorization' => 'Basic ' . TOKEN_INDICATA,
                 'Accept-Language'  => 'it-IT',
@@ -217,24 +313,23 @@
             GFCommon::log_debug( __METHOD__ . '() trying to download file ');
 
             /* Tolgo gli spazi all'url */
-            $url = trim($url);
+            //$url = trim($url);
 
             /* Effettuo la chiamata  */
-            $response = $client->request('GET', $url, ['headers' => $headers]); 
-
-            GFCommon::log_debug( __METHOD__ . '() pdf : ' . $response);
-
-            /* Scrivo il contenuto della risposta sul file */
-            fwrite($file_path, $response);
-
+            $client->request('GET', $url, ['headers' => $headers, 'sink' => $file_path]); 
+            
             /* Chiudo il file */
             fclose($file_path);
-            GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($url));
+            GFCommon::log_debug( __METHOD__ . '() pdf downloaded name: ' . basename($path));
+
         }
+        
         catch (Exception $e)
         {
             GFCommon::log_debug( __METHOD__ . '() Exception' . $e);          
         }
+
+        
     }
 
     /**
@@ -259,6 +354,7 @@
             /* Effettuo la chiamata */
             $response = $client->request($type, $url, $headers);
             GFCommon::log_debug( __METHOD__ . '(): api called succesfully');
+            return $response;
         }
         /* Catturo le varie possibili eccezioni */
         catch (GuzzleHttp\Exception\ClientException $e) {
@@ -282,10 +378,6 @@
             $responseBodyAsString = $response->getBody()->getContents();
             GFCommon::log_debug( __METHOD__ . '(): API error: ' . $responseBodyAsString);
         }
-
-
-
-        return $response;
     }
 
 

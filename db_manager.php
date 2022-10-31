@@ -25,6 +25,8 @@
         SELECT * FROM gestionale.wp_cars WHERE targa="' . $plate . '"';
         $sqlVersioni =  'SELECT versione, codice FROM gestionale.wp_versions WHERE targa="' . $plate . '"';
 
+
+
         // Connessione al database
         $conn =  mysqli_connect(NAME_DB, USERNAME_DB, PASSWORD_DB);
 
@@ -36,9 +38,9 @@
         // Eseguo la query e salvo i dati su $result
         $result = mysqli_query($conn, $sql) or die( mysqli_error($conn));
         $responseVersioni = mysqli_query($conn, $sqlVersioni) or die( mysqli_error($conn));
-        
+
         // Controllo se la query ha restituito almeno una riga
-        if (mysqli_num_rows($result) == 0) 
+        if (mysqli_num_rows($result) == 0 || mysqli_num_rows($responseVersioni) == 0) 
         {
             // La query non ha prodotto risultati, la targa non è presente
 
@@ -141,11 +143,16 @@
         for($i = 0; $i < sizeof($data['versione']); $i++)
         {
 
-            $sql = 'INSERT INTO `gestionale`.wp_versions (targa, versione, codice)
-            VALUES ("' . $data['targa'] . '", 
+            $sql = 'INSERT INTO `gestionale`.wp_versions (indice, targa, versione, codice)
+            VALUES ("' . $data['targa']  . '-' . $data['versione'][$i]['versione'] . '", 
+                "' . $data['targa'] . '",
                 "' . $data['versione'][$i]['versione'] . '",
                 "' . $data['versione'][$i]['codice'] . '")';
 
+            
+            
+
+                
 
             // Eseguo la query e ne controllo l'esito
             if ($conn->query($sql) === TRUE) 

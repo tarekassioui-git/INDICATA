@@ -74,6 +74,10 @@
         $parsed_registration['valuation_url'] = $content->valuation[0]->href;
         $parsed_registration['valuation_url'] = str_replace('{/profiles}', '/RETAIL_100,SUPPLY_DEMAND,MAX_PURCHASE_PRICE_100,PDF,COMPETITIVE_SET', $parsed_registration['valuation_url']);
 
+
+        GFCommon::log_debug( __METHOD__ . '(): parsed data: ' . print_r($parsed_registration, TRUE) );
+
+
         /* Popolamento form */ 
         fill_registrationData($parsed_registration);
         
@@ -88,6 +92,16 @@
     }
 
 
+    /**
+     * Lettura dei file di valutazione 
+     * 
+     * @author Tarek Assioui   
+     * 
+     * @param content risposta da leggere
+     * 
+     * @return void
+     * 
+     */
     function parse_valuation($content)
     {
         GFCommon::log_debug( __METHOD__ . '(): init');
@@ -96,18 +110,19 @@
 
         $parsed_valuation['retail_100'] = $content->valuations[0]->amount->value;
         $parsed_valuation['max_purchase_price'] = $content->valuations[1]->amount->value;
-        $parsed_valuation['mds']['overall'] = $content->mds->marketDaySupplyOverall;
-        $parsed_valuation['mds']['similar'] = $content->mds->marketDaySupplySimilar;
-        $parsed_valuation['mds']['market'] = $content->mds->marketDaySupplyMarket;
-        $parsed_valuation['mds']['make'] = $content->mds->marketDaySupplyMake;
+        $parsed_valuation['mds']['overall'] = $content->mds->marketDaysSupplyOverall;
+        $parsed_valuation['mds']['similar'] = $content->mds->marketDaysSupplySimilar;
+        $parsed_valuation['mds']['market'] = $content->mds->marketDaysSupplyMarket;
+        $parsed_valuation['mds']['make'] = $content->mds->marketDaysSupplyMake;
         $parsed_valuation['mds']['competitiveVeichlesSold'] = $content->mds->competitiveVehiclesSold;
         $parsed_valuation['daysToSell'] = $content->maxPurchasePriceBreakdown->daysToSell;
         $parsed_valuation['pdf_link'] = $content->pdf->href;
 
-        GFCommon::log_debug( __METHOD__ . '(): parsed');
+        GFCommon::log_debug( __METHOD__ . '(): parsed data: ' . print_r($parsed_valuation, TRUE) );
 
         getPdf($parsed_valuation['pdf_link']);
-        //fill_Valuation($parsed_valuation);
+        
+        return $parsed_valuation;
     }
 
 ?>
