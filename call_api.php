@@ -117,7 +117,6 @@
         /* Creazione client Guzzle */
         $client = new GuzzleHttp\Client();
 
-        GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
         /* Rimuovo la parte finale {/odometer ecc.} dall'url */
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
