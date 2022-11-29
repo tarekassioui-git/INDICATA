@@ -19,9 +19,6 @@
     {
         
         $location_form_id ='53';
-        add_filter( 'gform_pre_render_'.$location_form_id, function($form) use ( $parsed_registration ) {
-            return populate_posts( $form, $parsed_registration ); 
-        },10,3);
         add_filter( 'gform_pre_validation_'.$location_form_id, function($form) use ( $parsed_registration ) {
             return populate_posts( $form, $parsed_registration ); 
         },10,3);
