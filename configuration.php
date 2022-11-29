@@ -51,7 +51,7 @@
 
         /* Controllo della presenza di una targa nell'url */
         if(!isset($plate))
-            return;
+            return $form;
 
         /* Ottenimento dello slug dell'url */
         $slug = $_SERVER['REQUEST_URI'];
@@ -59,10 +59,12 @@
         
         /* Controllo se siamo sulla pagina giusta */
         if($slug[0] != '/nuova-acquisizione/')
-            return;
+            return $form;
 
         /* Ottengo la pagina corrente */
         $current_page = GFFormDisplay::get_current_page('53');    
+
+        GFCommon::log_debug( __METHOD__ . '(): current page: ' . $current_page);
 
         /* Controllo di essere nella pagina giusta */
         if ( $current_page != 1) {
