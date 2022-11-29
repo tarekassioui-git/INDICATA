@@ -76,6 +76,8 @@
             return $form;
         }
                 
+
+        GFCommon::log_debug( __METHOD__ . '(): calling check_db');
         $checked = check_db($plate);
 
         if(!$checked[0])
