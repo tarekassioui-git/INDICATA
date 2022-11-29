@@ -113,7 +113,7 @@
         
 
         // Popolo la query con i dati della macchina
-        $sql = 'INSERT INTO `gestionale`.wp_cars (targa, marca, modello, carburante, potenza, cambio, immatricolazione, trazione, telaio, valuation_url)
+        $sql = 'INSERT INTO `gestionale`.wp_cars (targa, marca, modello, carburante, potenza, cambio, immatricolazione, trazione, telaio, tipo, valuation_url)
         VALUES ("' . $data['targa'] . '", 
             "' . $data['marca'] . '",
             "' . $data['modello'] . '",
@@ -123,6 +123,7 @@
             "' . $data['immatricolazione'] . '",
             "' . $data['trazione'] . '",
             "' . $data['telaio'] . '",
+            "' . $data['type'] . '",
             "' . $data['valuation_url'] . '")';
         
 
