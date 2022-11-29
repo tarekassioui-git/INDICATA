@@ -35,57 +35,57 @@
             }
 
 
-            if ( $field->id == 1 ) {
+            if ( $field->id == '1' ) {
                  
                 $field->text = $data['targa'];
             }
 
-            if ( $field->id == 24 ) {
+            if ( $field->id == '24' ) {
                  
                 $field->text = $data['marca'];
             }
 
-            if ( $field->id == 3 ) {
+            if ( $field->id == '3' ) {
                  
                 $field->text =$data['modello'];
             }
 
-            if ( $field->id == 22 ) {
+            if ( $field->id == '22' ) {
                  
                 $field->text = $data['retail_100'];
             }
 
-            if ( $field->id == 6 ) {
+            if ( $field->id == '6' ) {
                  
                 $field->text =$data['carburante'];
             }
 
-            if ( $field->id == 9 ) {
+            if ( $field->id == '9' ) {
                  
                 $field->text =$data['potenza'];
             }
 
-            if ( $field->id == 7 ) {
+            if ( $field->id == '7' ) {
                  
                 $field->text =$data['cambio'];
             }
 
-            if ( $field->id == 5 ) {
+            if ( $field->id == '5' ) {
                  
                 $field->text =$data['immatricolazione'];
             }
 
-            if ( $field->id == 8 ) {
+            if ( $field->id == '8' ) {
                  
                 $field->text =$data['trazione'];
             }
 
-            if ( $field->id == 10 ) {
+            if ( $field->id == '10' ) {
                  
                 $field->text = $data['telaio'];
             }
 
-            if ( $field->id == 212 ) {
+            if ( $field->id == '212' ) {
                  
                 $field->text = $data['type'];
             }
