@@ -124,7 +124,7 @@
     {
 
         add_filter('gform_field_value',function( $value, $field, $name ) use ( $data ) {
-            return populate_fields( $value, $field, $name, $data);}, 10, 3);
+            return populate_valuation( $value, $field, $name, $data);}, 10, 3);
     }
 
 
