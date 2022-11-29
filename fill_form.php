@@ -58,11 +58,12 @@
             }
 
 
-            GFCommon::log_debug( __METHOD__ . '(): POST: ' . print_r($_POST, true));
+            
 
 
         }
 
+        GFCommon::log_debug( __METHOD__ . '(): POST: ' . print_r($_POST, true));
         return $form; //return form
      
     }
