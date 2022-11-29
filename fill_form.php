@@ -38,25 +38,27 @@
 
 
 
+
             switch($field->id)
             {
-                case '1' : $field->text = $data['targa'];  GFCommon::log_debug( __METHOD__ . '(): filled targa '); break;
-                case '24' : $field->text = $data['marca'];  GFCommon::log_debug( __METHOD__ . '(): filled marca ') ;break;
-                case '3' : $field->text =$data['modello'];  GFCommon::log_debug( __METHOD__ . '(): filled modello '); break;
-                case '22' : $field->text = $data['retail_100'];   GFCommon::log_debug( __METHOD__ . '(): filled retail'); break;
-                case '6' : $field->text =$data['carburante'];  GFCommon::log_debug( __METHOD__ . '(): filled carburante '); break;
-                case '9' : $field->text =$data['potenza'];  GFCommon::log_debug( __METHOD__ . '(): filled potenza '); break;
-                case '7' : $field->text =$data['cambio'];  GFCommon::log_debug( __METHOD__ . '(): filled cambio '); break;
-                case '5' : $field->text =$data['immatricolazione'];  GFCommon::log_debug( __METHOD__ . '(): filled immatricolazione '); break;
-                case '8' : $field->text =$data['trazione'];  GFCommon::log_debug( __METHOD__ . '(): filled trazione'); break;
-                case '10' : $field->text = $data['telaio'];   GFCommon::log_debug( __METHOD__ . '(): filled telaio ') ;break;
-                case '212' : $field->text = $data['type'];  GFCommon::log_debug( __METHOD__ . '(): filled type '); break;
+                case '1' : $_POST['input_1'] = $data['targa'];  GFCommon::log_debug( __METHOD__ . '(): filled targa '); break;
+                case '24' : $_POST['input_24'] = $data['marca'];  GFCommon::log_debug( __METHOD__ . '(): filled marca ') ;break;
+                case '3' : $_POST['input_3'] =$data['modello'];  GFCommon::log_debug( __METHOD__ . '(): filled modello '); break;
+                case '22' : $_POST['input_22'] = $data['retail_100'];   GFCommon::log_debug( __METHOD__ . '(): filled retail'); break;
+                case '6' : $_POST['input_6'] =$data['carburante'];  GFCommon::log_debug( __METHOD__ . '(): filled carburante '); break;
+                case '9' : $_POST['input_9'] =$data['potenza'];  GFCommon::log_debug( __METHOD__ . '(): filled potenza '); break;
+                case '7' : $_POST['input_7'] =$data['cambio'];  GFCommon::log_debug( __METHOD__ . '(): filled cambio '); break;
+                case '5' : $_POST['input_5'] =$data['immatricolazione'];  GFCommon::log_debug( __METHOD__ . '(): filled immatricolazione '); break;
+                case '8' : $_POST['input_8'] =$data['trazione'];  GFCommon::log_debug( __METHOD__ . '(): filled trazione'); break;
+                case '10' : $_POST['input_10'] = $data['telaio'];   GFCommon::log_debug( __METHOD__ . '(): filled telaio ') ;break;
+                case '212' : $_POST['input_212'] = $data['type'];  GFCommon::log_debug( __METHOD__ . '(): filled type '); break;
                 
-                default : GFCommon::log_debug( __METHOD__ . '(): not fillable: ' . $field->id); 
+                default : GFCommon::log_debug( __METHOD__ . '(): not fillable: ' . $field->id); break;
 
             }
 
 
+            GFCommon::log_debug( __METHOD__ . '(): POST: ' . print_r($_POST, true));
 
 
         }
