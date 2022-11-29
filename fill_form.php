@@ -96,6 +96,8 @@
             'telaio' => $data['telaio'],
             'tipo-veicolo' => $data['type']
         );
+        
+        $_POST = json_decode(file_get_contents("php://input"), true);
 
         GFCommon::log_debug( __METHOD__ . '(): post array: ' . print_r($_POST, true));
         
