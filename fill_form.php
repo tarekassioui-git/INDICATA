@@ -96,8 +96,7 @@
             'telaio' => $data['telaio'],
             'tipo-veicolo' => $data['type']
         );
-        
-        $_POST = json_decode(file_get_contents("php://input"), true);
+
 
         GFCommon::log_debug( __METHOD__ . '(): post array: ' . print_r($_POST, true));
         
@@ -106,16 +105,16 @@
         {
             switch($field->id)
             {
-                case 1 :  break;
-                case 24 : break;
-                case 3 : break;
-                case 6 : break;
-                case 9 : break;
-                case 7 : break;
-                case 5 : break;
-                case 8 : break;
-                case 10 : break;
-                case 212 : break;
+                case 1 : $field->defaultValue = $data['targa']; break;
+                case 24 : $field->defaultValue = $data['marca']; break;
+                case 3 : $field->defaultValue = $data['modello'];break;
+                case 6 : $field->defaultValue = $data['carburante']; break;
+                case 9 : $field->defaultValue = $data['potenza']; break;
+                case 7 : $field->defaultValue = $data['cambio']; break;
+                case 5 : $field->defaultValue = $data['immatricolazione']; break;
+                case 8 : $field->defaultValue = $data['trazione']; break;
+                case 10 : $field->defaultValue = $data['telaio']; break;
+                case 212 : $field->defaultValue = $data['types']; break;
             }
         }
         
