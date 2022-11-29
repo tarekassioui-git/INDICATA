@@ -22,6 +22,7 @@
 
         //Go through each form fields
         foreach ( $form['fields'] as $field ) {
+
             //check if field type is a select dropdown and id is 2
             if ( $field->type == 'select' && $field->id == $field_ID) {
                 //add name and value to the option
@@ -35,60 +36,28 @@
             }
 
 
-            if ( $field->id == '1' ) {
-                 
-                $field->text = $data['targa'];
+
+
+            switch($field->id)
+            {
+                case '1' : $field->text = $data['targa']; break;
+                case '24' : $field->text = $data['marca']; break;
+                case '3' : $field->text =$data['modello']; break;
+                case '22' : $field->text = $data['retail_100']; break;
+                case '6' : $field->text =$data['carburante']; break;
+                case '9' : $field->text =$data['potenza']; break;
+                case '7' : $field->text =$data['cambio']; break;
+                case '5' : $field->text =$data['immatricolazione']; break;
+                case '8' : $field->text =$data['trazione']; break;
+                case '10' : $field->text = $data['telaio']; break;
+                case '212' : $field->text = $data['type']; break;
+                
+                default : GFCommon::log_debug( __METHOD__ . '(): not fillable: ' . $field->id); 
+
             }
 
-            if ( $field->id == '24' ) {
-                 
-                $field->text = $data['marca'];
-            }
 
-            if ( $field->id == '3' ) {
-                 
-                $field->text =$data['modello'];
-            }
 
-            if ( $field->id == '22' ) {
-                 
-                $field->text = $data['retail_100'];
-            }
-
-            if ( $field->id == '6' ) {
-                 
-                $field->text =$data['carburante'];
-            }
-
-            if ( $field->id == '9' ) {
-                 
-                $field->text =$data['potenza'];
-            }
-
-            if ( $field->id == '7' ) {
-                 
-                $field->text =$data['cambio'];
-            }
-
-            if ( $field->id == '5' ) {
-                 
-                $field->text =$data['immatricolazione'];
-            }
-
-            if ( $field->id == '8' ) {
-                 
-                $field->text =$data['trazione'];
-            }
-
-            if ( $field->id == '10' ) {
-                 
-                $field->text = $data['telaio'];
-            }
-
-            if ( $field->id == '212' ) {
-                 
-                $field->text = $data['type'];
-            }
 
         }
 
