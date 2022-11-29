@@ -104,7 +104,8 @@
             'cambio' => $data['cambio'],
             'immatricolazione' => $data['immatricolazione'],
             'trazione' => $data['trazione'],
-            'telaio' => $data['telaio']
+            'telaio' => $data['telaio'],
+            'tipo-veicolo' => $data['type']
         );
     
         return isset( $values[ $name ] ) ? $values[ $name ] : $value;

@@ -15,7 +15,7 @@
      * 
      * @param plate targa da esaminare
      * 
-     * @chiamate parse_registration($content), store_to_db($content)
+     * @callbacks parse_registration($content), store_to_db($content)
      * 
      * @return void
      */
