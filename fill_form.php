@@ -15,7 +15,7 @@
      * 
      * @return populate_posts
      */
-    function fill_registrationData($form, $parsed_registration)
+    function fill_registrationData($form, $data)
     {
         GFCommon::log_debug( __METHOD__ . '(): starting to fill...');
         $location_form_id ='53';
@@ -31,8 +31,8 @@
 
         populate_posts($form, $data);
 
-        add_filter('gform_field_value',function( $value, $field, $name ) use ( $parsed_registration ) {
-            return populate_fields( $value, $field, $name, $parsed_registration);}, 10, 3);
+        add_filter('gform_field_value',function( $value, $field, $name ) use ( $data ) {
+            return populate_fields( $value, $field, $name, $data);}, 10, 3);
     }
 
     /**
