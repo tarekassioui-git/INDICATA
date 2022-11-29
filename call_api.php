@@ -117,7 +117,6 @@
         /* Creazione client Guzzle */
         $client = new GuzzleHttp\Client();
 
-        GFCommon::log_debug( __METHOD__ . '(): url: ' . $url);
 
         /* Rimuovo la parte finale {/odometer ecc.} dall'url */
         $url = preg_replace("/\{[^)]+\}/", "", $data['valuation_url']);
@@ -154,16 +153,20 @@
 
         //Add a placeholder to field id 8, is not used with multi-select or radio, will overwrite placeholder set in form editor.
         //Replace 8 with your actual field id.
-        $fields = $form['fields'];
-        foreach( $form['fields'] as &$field ) {
+
+        foreach( $form['fields'] as $field ) {
             if ( $field->id == 22 ) {
                 $field->text = $data['retail_100'];
+                $_POST['input_22'] = $data['retail_100'];
             }
             if ( $field->id == 176 ) {
-                $field->text = '98';
+                $field->text = 98;
+                $_POST['input_176'] = 98;
             }
             if ( $field->id == 206 ) {
                 $field->text = $data['mds']['overall'];
+
+                $_POST['input_206'] =  $data['mds']['overall'];
             }   
         }
 

@@ -48,6 +48,7 @@
 
 
 
+
         /* Controllo della presenza di una targa nell'url */
         if(!isset($plate))
             return;
