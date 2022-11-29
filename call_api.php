@@ -59,8 +59,6 @@
     }
 
     	
-    // Filtro per chiamare l'api valutazione sulla seconda pagina del form
-    add_filter( 'gform_pre_render_53', 'call_valuation_api' );
 
 
     /**
