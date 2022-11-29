@@ -67,6 +67,10 @@
         /* Controllo di essere nella pagina giusta */
         if ( $current_page != 1) {
             GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
+
+            if($current_page == 2)
+                call_valuation_api($form);
+            
             return $form;
         }
                 
