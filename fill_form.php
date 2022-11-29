@@ -25,9 +25,9 @@
         add_filter( 'gform_pre_submission_filter_'.$location_form_id, function($form) use ( $parsed_registration ) {
             return populate_posts( $form, $parsed_registration ); 
         },10,3);
-        add_filter( 'gform_admin_pre_render_'.$location_form_id, function($form) use ( $parsed_registration ) {
+   /*      add_filter( 'gform_admin_pre_render_'.$location_form_id, function($form) use ( $parsed_registration ) {
             return populate_posts( $form, $parsed_registration ); 
-        },10,3);
+        },10,3); */
 
 
 
