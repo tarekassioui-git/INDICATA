@@ -75,6 +75,7 @@
         $parsed_registration['valuation_url'] = str_replace('{/profiles}', '/RETAIL_100,SUPPLY_DEMAND,MAX_PURCHASE_PRICE_100,PDF,COMPETITIVE_SET', $parsed_registration['valuation_url']);
         
         $parsed_registration['type'] = $content->category->name;
+        
         GFCommon::log_debug( __METHOD__ . ' tipo veicolo : ' . $parsed_registration['type']);
 
         /* Popolamento form */ 

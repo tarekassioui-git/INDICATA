@@ -239,8 +239,8 @@
          *  */ 
         $test = explode('/',$url);
         if(array_pop($test) == 'status')
-        {
-            sleep(5);
+        {   
+            str_replace('/status', '', $url);
             getPdf($url);
         }
         else
