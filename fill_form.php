@@ -31,8 +31,7 @@
 
         populate_posts($form, $data);
 
-        add_filter('gform_field_value',function( $value, $field, $name ) use ( $data ) {
-            return populate_fields( $value, $field, $name, $data);}, 10, 3);
+        populate_fields($form, $data);
     }
 
     /**
@@ -84,19 +83,11 @@
      * @return values array contenente i valori e i field da popolare
      * 
      */
-    function populate_fields( $value, $field, $name, $data ) {
-
-        foreach ($data as $value)
-        {
-            if(!isset($value))
-                $value = "Error";
-        }
-
+    function populate_fields( $form, $data ) {
         $values = array(
             'targa' => $data['targa'],
             'marca'   => $data['marca'],
             'modello'   => $data['modello'],
-            'allestimento' => $data['allestimento'],
             'carburante' => $data['carburante'],
             'potenza' => $data['potenza'],
             'cambio' => $data['cambio'],
@@ -105,8 +96,27 @@
             'telaio' => $data['telaio'],
             'tipo-veicolo' => $data['type']
         );
-    
-        return isset( $values[ $name ] ) ? $values[ $name ] : $value;
+
+        GFCommon::log_debug( __METHOD__ . '(): post array: ' . print_r($_POST, true));
+        
+
+        foreach ($form['fields'] as $field)
+        {
+            switch($field->id)
+            {
+                case 1 :  break;
+                case 24 : break;
+                case 3 : break;
+                case 6 : break;
+                case 9 : break;
+                case 7 : break;
+                case 5 : break;
+                case 8 : break;
+                case 10 : break;
+                case 212 : break;
+            }
+        }
+        
     }
 
 
