@@ -29,7 +29,7 @@
             return populate_posts( $form, $parsed_registration ); 
         },10,3); */
 
-        GlobalPopulate_posts($form, $data)
+        populate_posts($form, $data);
 
         add_filter('gform_field_value',function( $value, $field, $name ) use ( $parsed_registration ) {
             return populate_fields( $value, $field, $name, $parsed_registration);}, 10, 3);
