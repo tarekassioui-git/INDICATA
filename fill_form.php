@@ -15,40 +15,8 @@
      * 
      * @return populate_posts
      */
-    function fill_registrationData($parsed_registration)
+    function fill_registrationData($form, $data)
     {
-        
-        $location_form_id ='53';
-        add_filter( 'gform_pre_render_'.$location_form_id, function($form) use ( $parsed_registration ) {
-            return populate_posts( $form, $parsed_registration ); 
-        },10,3);
-        add_filter( 'gform_pre_validation_'.$location_form_id, function($form) use ( $parsed_registration ) {
-            return populate_posts( $form, $parsed_registration ); 
-        },10,3);
-        add_filter( 'gform_pre_submission_filter_'.$location_form_id, function($form) use ( $parsed_registration ) {
-            return populate_posts( $form, $parsed_registration ); 
-        },10,3);
-        add_filter( 'gform_admin_pre_render_'.$location_form_id, function($form) use ( $parsed_registration ) {
-            return populate_posts( $form, $parsed_registration ); 
-        },10,3);
-
-
-
-        add_filter('gform_field_value',function( $value, $field, $name ) use ( $parsed_registration ) {
-            return populate_fields( $value, $field, $name, $parsed_registration);}, 10, 3);
-    }
-
-    /**
-     * Popola le scelte dropdown delle versioni auto
-     * 
-     * @param form oggetto form gravity form
-     * @param data array contenete tutte le informazioni sull'auto
-     * 
-     * @return form oggetto form gravity form con modifica versioni
-     * 
-     */
-    function populate_posts( $form, $data ) {
-	
         //the select feild id you want the versions to load
         $field_ID = '12';
 
@@ -65,50 +33,67 @@
                 //Add the new names to the form choices
                 $field->choices = $choices;
             }
+
+
+            if ( $field->id == 1 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_1'] = $data['targa'];
+            }
+
+            if ( $field->id == 24 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_24'] = $data['marca'];
+            }
+
+            if ( $field->id == 3 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_3'] = $data['modello'];
+            }
+
+            if ( $field->id == 22 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_22'] = $data['retail_100'];
+            }
+
+            if ( $field->id == 6 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_6'] = $data['carburante'];
+            }
+
+            if ( $field->id == 9 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_9'] = $data['potenza'];
+            }
+
+            if ( $field->id == 7 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_7'] = $data['cambio'];
+            }
+
+            if ( $field->id == 5 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_5'] = $data['immatricolazione'];
+            }
+
+            if ( $field->id == 8 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_8'] = $data['trazione'];
+            }
+
+            if ( $field->id == 10 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_10'] = $data['telaio'];
+            }
+
+            if ( $field->id == 212 ) {
+                //$field->text = $data['retail_100'];
+                $_POST['input_212'] = $data['type'];
+            }
+
         }
+
         return $form; //return form
-    }
-
-
-
-    /**
-     * Popola i field del modulo 
-     * 
-     * @access private
-     * @author Tarek Assioui
-     * 
-     * @param value array associativo field => value
-     * @param field il campo da popolare (inutilizzato)
-     * @param name il nome del campo da popolare
-     * @param data array contenente i dati con cui pooplare
-     * 
-     * 
-     * @return values array contenente i valori e i field da popolare
-     * 
-     */
-    function populate_fields( $value, $field, $name, $data ) {
-
-        foreach ($data as $value)
-        {
-            if(!isset($value))
-                $value = "Error";
-        }
-
-        $values = array(
-            'targa' => $data['targa'],
-            'marca'   => $data['marca'],
-            'modello'   => $data['modello'],
-            'allestimento' => $data['allestimento'],
-            'carburante' => $data['carburante'],
-            'potenza' => $data['potenza'],
-            'cambio' => $data['cambio'],
-            'immatricolazione' => $data['immatricolazione'],
-            'trazione' => $data['trazione'],
-            'telaio' => $data['telaio'],
-            'tipo-veicolo' => $data['type']
-        );
-    
-        return isset( $values[ $name ] ) ? $values[ $name ] : $value;
+     
     }
 
 

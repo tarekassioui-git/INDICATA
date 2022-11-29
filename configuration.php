@@ -38,7 +38,7 @@
      * 
      * @return void 
      * */ 
-    function indicata_workflow()
+    function indicata_workflow($form)
     {   
 
 
@@ -61,23 +61,33 @@
         if($slug[0] != '/nuova-acquisizione/')
             return;
 
+        /* Ottengo la pagina corrente */
+        $current_page = GFFormDisplay::get_current_page('53');    
+
+        /* Controllo di essere nella pagina giusta */
+        if ( $current_page != 1) {
+            GFCommon::log_debug( __METHOD__ . '(): current page: ' . GFFormDisplay::get_current_page( $form['id'] ) );
+            return $form;
+        }
                 
         $checked = check_db($plate);
 
         if(!$checked[0])
             /* Chiamata API per ottenere i dati tecnici */
-            call_registration_number_api($plate);
+            call_registration_number_api($form, $plate);
         else
-            fill_registrationData($checked[1]);
+            fill_registrationData($form, $checked[1]);
     
 
         $time_end = microtime(true);
 
         GFCommon::log_debug( __METHOD__ . ' execution time : ' . ($time_end - $time_start)/60);
 
+        return $form
+
     }   
 
-    add_action( 'wp_loaded','indicata_workflow' );
+    add_action( 'gform_pre_render_53','indicata_workflow' );
     
 
 ?>

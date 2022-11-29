@@ -12,7 +12,7 @@
      * 
      * @return void
      */
-    function parse_registration($content)
+    function parse_registration($form, $content)
     {
 
         $pattern = '/\s*/m';
@@ -75,17 +75,17 @@
         $parsed_registration['valuation_url'] = str_replace('{/profiles}', '/RETAIL_100,SUPPLY_DEMAND,MAX_PURCHASE_PRICE_100,PDF,COMPETITIVE_SET', $parsed_registration['valuation_url']);
         
         $parsed_registration['type'] = $content->category->name;
-        
+
         GFCommon::log_debug( __METHOD__ . ' tipo veicolo : ' . $parsed_registration['type']);
 
         /* Popolamento form */ 
-        fill_registrationData($parsed_registration);
+        fill_registrationData($form, $parsed_registration);
         
         /* Se almeno uno dei dati non è stato letto correttamente la vettura non viene salvata sul database*/
         foreach($parsed_registration as $value)
         {
             if(!isset($value))
-                return;
+                return $form;
         }
         /* Salvataggio su database */
         store_to_db($parsed_registration);

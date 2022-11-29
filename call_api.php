@@ -19,7 +19,7 @@
      * 
      * @return void
      */
-    function call_registration_number_api($plate)
+    function call_registration_number_api($form, $plate)
     {
         
         $time_start = microtime(true);
@@ -42,20 +42,20 @@
         if(!isset($response))
         {
             GFCommon::log_debug( __METHOD__ . '(): error: ' . $response);
-            return;
+            return $form;
         }
 
         
         $content= json_decode($response->getBody());
 
         /* Lettura e gestione della risposta */ 
-        parse_registration($content);
+        parse_registration($form, $content);
 
         $time_end = microtime(true);
 
         GFCommon::log_debug( __METHOD__ . ' execution time : ' . ($time_end - $time_start)/60 );
 
-        return;
+        return $form;
     }
 
     	
