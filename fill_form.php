@@ -17,7 +17,7 @@
      */
     function fill_registrationData($parsed_registration)
     {
-        
+        GFCommon::log_debug( __METHOD__ . '(): starting to fill...');
         $location_form_id ='53';
         add_filter( 'gform_pre_validation_'.$location_form_id, function($form) use ( $parsed_registration ) {
             return populate_posts( $form, $parsed_registration ); 
@@ -45,7 +45,8 @@
      * 
      */
     function populate_posts( $form, $data ) {
-	
+        
+        GFCommon::log_debug( __METHOD__ . '(): versions');
         //the select feild id you want the versions to load
         $field_ID = '12';
 
