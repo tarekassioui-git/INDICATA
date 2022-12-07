@@ -166,6 +166,10 @@
 
                 $_POST['input_206'] =  $data['mds']['overall'];
             }   
+
+            if($field->id == 214) {
+                $_POST['input_214'] = $data['max_purchase_price'];
+            }
         }
 
         $time_end = microtime(true);
