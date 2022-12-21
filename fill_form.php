@@ -33,6 +33,10 @@
         add_filter( 'gform_admin_pre_render_'.$location_form_id, function($form) use ( $data ) {
             return populate_posts( $form, $data ); 
         },10,3);
+
+        add_filter( 'gform_pre_render_'.$location_form_id, function($form) use ( $data ) {
+            return populate_posts( $form, $data ); 
+        },10,3);
     }
 
     /**
