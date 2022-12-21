@@ -73,7 +73,7 @@
             if($current_page == 2)
                 call_valuation_api($form);
             
-            return $form;
+            //return $form;
         }
                 
 
